@@ -1,0 +1,739 @@
+<title>Birački spisak Savskog venca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap">
+<style>
+:root{
+  color-scheme: light;
+  --paper:#f2f3f2;
+  --surface:#ffffff;
+  --surface-2:#e9ebea;
+  --ink:#15181b;
+  --ink-2:#4a5157;
+  --ink-3:#767d83;
+  --line:#dadedf;
+  --line-2:#c2c7c9;
+  --accent:#1d4d63;
+  --accent-soft:#e3eef3;
+  --on-accent:#ffffff;
+  --c-visok:#ad3a1f;
+  --c-umeren:#9d7015;
+  --c-nepotpun:#6d757c;
+  --c-nestambena:#2c6b8d;
+  --c-javni:#3a7853;
+  --c-visok-bg:#f7e6e1;
+  --c-umeren-bg:#f7eed8;
+  --c-nepotpun-bg:#e9ebed;
+  --c-nestambena-bg:#e0eef5;
+  --c-javni-bg:#e2f0e7;
+  --shadow:0 1px 2px rgba(20,28,33,.06), 0 8px 24px -16px rgba(20,28,33,.3);
+  --sans:"IBM Plex Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --paper:#0f1214;
+    --surface:#171b1e;
+    --surface-2:#1e2427;
+    --ink:#e7eaea;
+    --ink-2:#a9b1b7;
+    --ink-3:#7d868c;
+    --line:#293033;
+    --line-2:#3a4247;
+    --accent:#7cc2e6;
+    --accent-soft:#16323f;
+    --on-accent:#0c1114;
+    --c-visok:#e2764f;
+    --c-umeren:#d4a13c;
+    --c-nepotpun:#99a2a9;
+    --c-nestambena:#68a9cd;
+    --c-javni:#6cb185;
+    --c-visok-bg:#331d15;
+    --c-umeren-bg:#332814;
+    --c-nepotpun-bg:#22282b;
+    --c-nestambena-bg:#132a36;
+    --c-javni-bg:#152c20;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --paper:#0f1214;
+  --surface:#171b1e;
+  --surface-2:#1e2427;
+  --ink:#e7eaea;
+  --ink-2:#a9b1b7;
+  --ink-3:#7d868c;
+  --line:#293033;
+  --line-2:#3a4247;
+  --accent:#7cc2e6;
+  --accent-soft:#16323f;
+  --on-accent:#0c1114;
+  --c-visok:#e2764f;
+  --c-umeren:#d4a13c;
+  --c-nepotpun:#99a2a9;
+  --c-nestambena:#68a9cd;
+  --c-javni:#6cb185;
+  --c-visok-bg:#331d15;
+  --c-umeren-bg:#332814;
+  --c-nepotpun-bg:#22282b;
+  --c-nestambena-bg:#132a36;
+  --c-javni-bg:#152c20;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1320px;margin:0 auto;padding-inline:16px;padding-block:0 48px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;text-wrap:balance;margin:0}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* ---------- zaglavlje ---------- */
+header{border-bottom:1px solid var(--line);background:var(--surface)}
+.hd{max-width:1320px;margin:0 auto;padding-inline:16px;padding-block:22px 18px;
+    display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;justify-content:space-between}
+.hd-t{max-width:56ch}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;
+         color:var(--ink-3);margin:0 0 6px}
+h1{font-size:clamp(24px,3.4vw,34px);line-height:1.15;letter-spacing:-.01em}
+.sub{color:var(--ink-2);margin:8px 0 0;font-size:14.5px}
+.pismo{display:flex;gap:0;border:1px solid var(--line-2);border-radius:7px;overflow:hidden;flex:none}
+.pismo button{font-family:var(--mono);font-size:12px;padding:7px 12px;border:0;background:var(--surface);
+              color:var(--ink-2);cursor:pointer}
+.pismo button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+
+/* ---------- statistika ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);
+       border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:22px}
+.stat{background:var(--surface);padding:13px 15px}
+.stat .n{font-family:var(--mono);font-size:25px;font-weight:600;letter-spacing:-.02em;
+         font-variant-numeric:tabular-nums;line-height:1.1}
+.stat .l{font-size:12px;color:var(--ink-3);margin-top:3px}
+@media(max-width:620px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ---------- metodologija ---------- */
+.note{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);
+      border-radius:8px;padding:16px 18px;margin-top:18px}
+.note h2{font-size:17px;margin-bottom:8px}
+.note p{margin:0 0 9px;color:var(--ink-2);font-size:14px;max-width:80ch}
+.note p:last-child{margin-bottom:0}
+.note details{margin-top:10px}
+.note summary{cursor:pointer;font-size:13.5px;color:var(--accent);font-weight:500}
+.note details ul{margin:10px 0 0;padding-left:18px;color:var(--ink-2);font-size:14px;max-width:80ch}
+.note details li{margin-bottom:7px}
+
+/* ---------- kontrole ---------- */
+.controls{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.search{flex:1 1 240px;min-width:0;position:relative}
+.search input{width:100%;padding:10px 12px 10px 34px;border:1px solid var(--line-2);border-radius:8px;
+   background:var(--surface);color:var(--ink);font-family:var(--sans);font-size:14px}
+.search svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--ink-3)}
+select{padding:10px 12px;border:1px solid var(--line-2);border-radius:8px;background:var(--surface);
+   color:var(--ink);font-family:var(--sans);font-size:14px}
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.chip{display:inline-flex;align-items:center;gap:7px;padding:6px 11px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2);font-size:13px;font-family:var(--sans)}
+.chip .dot{width:9px;height:9px;border-radius:50%;flex:none}
+.chip .cnt{font-family:var(--mono);font-size:11.5px;color:var(--ink-3)}
+.chip[aria-pressed="true"]{background:var(--surface-2);border-color:var(--ink-3);color:var(--ink);font-weight:500}
+.chip[aria-pressed="false"]{opacity:.55}
+
+/* ---------- glavni raspored ---------- */
+main{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;margin-top:20px}
+@media(min-width:980px){
+  main{grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);gap:26px;align-items:start}
+  .kol-mapa{position:sticky;top:16px}
+}
+.rezultat{font-family:var(--mono);font-size:12px;color:var(--ink-3);margin:0 0 9px;letter-spacing:.02em}
+
+/* ---------- mapa ---------- */
+.mapbox{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;
+        box-shadow:var(--shadow)}
+.mapviz{position:relative;height:clamp(320px,52vh,640px);touch-action:none;cursor:grab}
+.mapviz.drag{cursor:grabbing}
+.mapviz svg{display:block;width:100%;height:100%}
+.mapctl{position:absolute;top:10px;right:10px;display:flex;flex-direction:column;gap:5px}
+.mapctl button{width:31px;height:31px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2);
+  border-radius:7px;cursor:pointer;font-family:var(--mono);font-size:15px;line-height:1;display:grid;place-items:center;
+  box-shadow:var(--shadow)}
+.mapctl button:hover{color:var(--ink);border-color:var(--ink-3)}
+.mapctl button.rst{font-size:11px}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--paper);padding:6px 9px;border-radius:6px;
+  font-size:12.5px;line-height:1.35;max-width:230px;transform:translate(-50%,-100%);margin-top:-11px;z-index:5;
+  box-shadow:0 4px 14px rgba(0,0,0,.28)}
+.tip b{font-weight:600;display:block}
+.tip span{font-family:var(--mono);font-size:11.5px;opacity:.8}
+.legend{display:flex;flex-wrap:wrap;gap:10px 16px;padding:11px 14px;border-top:1px solid var(--line);
+  background:var(--surface-2);font-size:12.5px;color:var(--ink-2)}
+.legend .it{display:inline-flex;align-items:center;gap:6px}
+.legend .dot{width:10px;height:10px;border-radius:50%}
+.legend .hint{color:var(--ink-3);font-size:12px;flex-basis:100%}
+.st-lbl{font-family:var(--mono);fill:var(--ink-3);letter-spacing:.02em;pointer-events:none;
+        paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
+.veza{stroke:var(--line-2);fill:none}
+
+/* ---------- lista ---------- */
+.lista{display:flex;flex-direction:column;gap:8px}
+.kart{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.kart.sel{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.red{width:100%;display:grid;grid-template-columns:62px minmax(0,1fr) auto;gap:14px;align-items:center;
+  padding:12px 14px;background:none;border:0;text-align:left;cursor:pointer;color:inherit;font-family:inherit}
+.red:hover{background:var(--surface-2)}
+.br{text-align:right}
+.br .n{font-family:var(--mono);font-size:21px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1}
+.br .u{font-family:var(--mono);font-size:9.5px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em}
+.adr{min-width:0}
+.adr .a{font-family:var(--serif);font-size:16.5px;font-weight:600;line-height:1.25;overflow-wrap:anywhere}
+.adr .m{font-size:12.5px;color:var(--ink-3);margin-top:3px;display:flex;gap:9px;flex-wrap:wrap}
+.adr .m .mono{color:var(--ink-2)}
+.tag{display:inline-flex;align-items:center;gap:6px;padding:4px 9px;border-radius:999px;font-size:11.5px;
+  font-weight:500;white-space:nowrap}
+.tag .dot{width:8px;height:8px;border-radius:50%}
+.kart .caret{color:var(--ink-3);transition:transform .15s}
+.kart[open] .caret{transform:rotate(180deg)}
+@media(max-width:520px){
+  .red{grid-template-columns:52px minmax(0,1fr);gap:11px}
+  .red .tagwrap{grid-column:1/-1}
+}
+.det{border-top:1px solid var(--line);padding:15px 16px 17px;display:grid;gap:14px}
+.dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:12px}
+.dl div{min-width:0}
+.dl dt{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-family:var(--mono)}
+.dl dd{margin:3px 0 0;font-size:14px;font-weight:500;overflow-wrap:anywhere}
+.pitanje{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.pitanje .lb{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;
+  color:var(--ink-3);margin-bottom:5px}
+.pitanje p{margin:0;font-family:var(--serif);font-size:15.5px;line-height:1.4}
+.objekti{display:flex;flex-wrap:wrap;gap:6px}
+.objekti span{font-family:var(--mono);font-size:11px;padding:3px 8px;border-radius:5px;
+  background:var(--surface-2);color:var(--ink-2);border:1px solid var(--line)}
+.kom{border-top:1px dashed var(--line);padding-top:12px}
+.kom h4{margin:0 0 7px;font-size:12.5px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;
+  color:var(--ink-3);font-weight:500}
+.kom .prazno{font-size:13.5px;color:var(--ink-3);margin:0}
+.kom ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.kom li{background:var(--surface-2);border-radius:7px;padding:9px 11px;font-size:13.5px}
+.kom li .who{font-family:var(--mono);font-size:11px;color:var(--ink-3);display:block;margin-top:4px}
+.akcije{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border-radius:7px;font-size:13px;
+  font-family:var(--sans);font-weight:500;cursor:pointer;border:1px solid var(--line-2);
+  background:var(--surface);color:var(--ink)}
+.btn:hover{border-color:var(--ink-3)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.pri:hover{filter:brightness(1.08)}
+.prazno-lista{background:var(--surface);border:1px dashed var(--line-2);border-radius:10px;padding:28px 18px;
+  text-align:center;color:var(--ink-3);font-size:14px}
+
+/* ---------- podnožje ---------- */
+footer{margin-top:40px;border-top:1px solid var(--line);padding-top:22px}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:24px}
+footer h3{font-size:15px;margin-bottom:7px}
+footer p{margin:0 0 8px;font-size:13.5px;color:var(--ink-2);max-width:62ch}
+footer .fine{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-3)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<header>
+  <div class="hd">
+    <div class="hd-t">
+      <p class="eyebrow">Savski venac · izbori 2026</p>
+      <h1>Adrese sa neuobičajenim brojem birača</h1>
+      <p class="sub">Javni podaci o broju upisanih birača po adresi, uporedo sa procenom broja stanova na toj
+        adresi. Lista je poziv komšijama da provere ono što podaci ne mogu — ko zaista živi na tim adresama.</p>
+    </div>
+    <div class="pismo" role="group" aria-label="Pismo">
+      <button type="button" id="pCir" aria-pressed="true">Ћир</button>
+      <button type="button" id="pLat" aria-pressed="false">Lat</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="stats" aria-label="Zbirni podaci">
+    <div class="stat"><div class="n" id="sAdr">0</div><div class="l">adresa na listi</div></div>
+    <div class="stat"><div class="n" id="sBir">0</div><div class="l">upisanih birača</div></div>
+    <div class="stat"><div class="n" id="sUl">0</div><div class="l">ulica</div></div>
+    <div class="stat"><div class="n" id="sProv">0</div><div class="l">provereno na terenu</div></div>
+  </section>
+
+  <section class="note">
+    <h2>Kako čitati ovu listu</h2>
+    <p>Broj upisanih birača na adresi je javan podatak. Procena broja stanova dolazi iz evidencije o objektima
+      i nije zvanična. Odnos ta dva broja nije dokaz nepravilnosti — on samo pokazuje gde je vredno pitati
+      nekoga ko poznaje kraj.</p>
+    <p>Na listi nema imena, prezimena, brojeva stanova ni bilo kog podatka o konkretnim ljudima, i neće ih biti.</p>
+    <details>
+      <summary>Zašto visok broj birača na adresi može biti sasvim uredan</summary>
+      <ul>
+        <li><strong>Ustanove i javni objekti.</strong> Zdravstvene ustanove, domovi, hoteli i ustanove socijalne
+          zaštite zakonito imaju upisane ljude na svojoj adresi.</li>
+        <li><strong>Nepotpun podatak o zgradi.</strong> Kada evidencija za celu zgradu prikazuje jedan ili dva
+          stana, odnos „birača po stanu” meri grešku u podacima, a ne stanje na terenu. Takve adrese su ovde
+          posebno označene i prvo treba utvrditi stvaran broj stanova.</li>
+        <li><strong>Prijavljeno prebivalište bez stanovanja.</strong> Studenti, ljudi na privremenom radu u
+          inostranstvu i vlasnici koji izdaju stan ostaju upisani na adresi na kojoj ne borave.</li>
+        <li><strong>Poslovni prostor u stambenoj zgradi</strong> i obrnuto — jedna adresa često pokriva više
+          objekata.</li>
+      </ul>
+    </details>
+  </section>
+
+  <section class="controls" aria-label="Filteri">
+    <div class="search">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7"
+           aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg>
+      <label class="sr" for="q" hidden>Pretraga po ulici</label>
+      <input id="q" type="search" placeholder="Pretraga po ulici — npr. Хумска ili humska" autocomplete="off">
+    </div>
+    <label for="sort" hidden>Redosled</label>
+    <select id="sort">
+      <option value="biraca">Najviše birača</option>
+      <option value="odnos">Najveći odnos po stanu</option>
+      <option value="prioritet">Prioritet za proveru</option>
+      <option value="ulica">Azbučno po ulici</option>
+    </select>
+  </section>
+  <div class="chips" id="chips" role="group" aria-label="Vrsta nalaza"></div>
+
+  <main>
+    <div class="kol-lista">
+      <p class="rezultat" id="rez"></p>
+      <div class="lista" id="lista"></div>
+    </div>
+
+    <div class="kol-mapa">
+      <div class="mapbox">
+        <div class="mapviz" id="mapviz">
+          <svg id="karta" role="img" aria-label="Raspored adresa sa liste"></svg>
+          <div class="tip" id="tip" hidden></div>
+          <div class="mapctl">
+            <button type="button" id="zIn" title="Uvećaj" aria-label="Uvećaj">+</button>
+            <button type="button" id="zOut" title="Umanji" aria-label="Umanji">−</button>
+            <button type="button" id="zRst" class="rst" title="Vrati prikaz" aria-label="Vrati prikaz">⟲</button>
+          </div>
+        </div>
+        <div class="legend" id="legend"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="fgrid">
+      <div>
+        <h3>Odakle podaci</h3>
+        <p>Broj birača po adresi preuzet je iz javno dostupnog uvida u jedinstveni birački spisak za opštinu
+          Savski venac. Procena broja stanova i vrste objekta dolazi iz evidencije o objektima i koristi se
+          samo kao orijentir.</p>
+      </div>
+      <div>
+        <h3>Ako mislite da je upis netačan</h3>
+        <p>Uvid u birački spisak i zahtev za upis, brisanje, izmenu ili dopunu podnosi se opštinskoj upravi po
+          mestu prebivališta. Rokovi su vezani za zaključenje biračkog spiska pre dana izbora, pa ih pre
+          podnošenja proverite kod nadležne uprave.</p>
+      </div>
+      <div>
+        <h3>Šta ova lista nije</h3>
+        <p>Nije optužba protiv stanara ni tvrdnja da je neki upis nezakonit. Adresa se nalazi na listi zato što
+          odnos brojeva zaslužuje proveru, i ostaje na njoj dok se ne proveri.</p>
+      </div>
+    </div>
+    <p class="fine">Prijave komšija se objavljuju sažeto i tek kada se više njih slaže. Sadržaj prijava se ne
+      objavljuje u izvornom obliku i ne sadrži podatke o konkretnim licima.</p>
+  </footer>
+</div>
+
+<script>
+const PODACI = [{"id":1,"ulica":"НЕЗНАНОГ ЈУНАКА","broj":"38","adresa":"НЕЗНАНОГ ЈУНАКА 38","trazi":"neznanog junaka 38 незнаног јунака 38","biraca":157,"prebivaliste":157,"boraviste":0,"stanova":null,"odnos":null,"pouzdanost":"nema","kat":"nestambena","prioritet":1,"nalazi":["nestambena adresa"],"objekat":["OBJEKAT DRUGIH DELATNOSTI"],"javni":"","lat":44.771577,"lon":20.463319,"status":"neprovereno","komentari":[]},{"id":2,"ulica":"КРАЉЕВИЋА МАРКА","broj":"9","adresa":"КРАЉЕВИЋА МАРКА 9","trazi":"kraljevica marka 9 краљевића марка 9","biraca":150,"prebivaliste":150,"boraviste":0,"stanova":8.0,"odnos":18.75,"pouzdanost":"dobra","kat":"visok","prioritet":5,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.813592,"lon":20.453351,"status":"neprovereno","komentari":[]},{"id":3,"ulica":"БОШКА ПЕТРОВИЋА","broj":"7","adresa":"БОШКА ПЕТРОВИЋА 7","trazi":"boska petrovica 7 бошка петровића 7","biraca":122,"prebivaliste":122,"boraviste":0,"stanova":9.0,"odnos":13.56,"pouzdanost":"dobra","kat":"visok","prioritet":5,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.776138,"lon":20.465283,"status":"neprovereno","komentari":[]},{"id":4,"ulica":"СВЕТОЗАРА МАРКОВИЋА","broj":"70","adresa":"СВЕТОЗАРА МАРКОВИЋА 70","trazi":"svetozara markovica 70 светозара марковића 70","biraca":110,"prebivaliste":110,"boraviste":0,"stanova":null,"odnos":null,"pouzdanost":"nema","kat":"nestambena","prioritet":1,"nalazi":["nestambena adresa"],"objekat":["ZGRADA ZDRAVSTVA"],"javni":"","lat":44.801204,"lon":20.46077,"status":"neprovereno","komentari":[]},{"id":5,"ulica":"БУЛЕВАР ВОЈВОДЕ МИШИЋА","broj":"39-А","adresa":"БУЛЕВАР ВОЈВОДЕ МИШИЋА 39-А","trazi":"bulevar vojvode misica 39-a булевар војводе мишића 39-а","biraca":107,"prebivaliste":107,"boraviste":0,"stanova":5.0,"odnos":21.4,"pouzdanost":"srednja","kat":"visok","prioritet":5,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.795234,"lon":20.439304,"status":"neprovereno","komentari":[]},{"id":6,"ulica":"БУЛЕВАР КРАЉА АЛЕКСАНДРА I КАРАЂОРЂЕВИЋА","broj":"19","adresa":"БУЛЕВАР КРАЉА АЛЕКСАНДРА I КАРАЂОРЂЕВИЋА 19","trazi":"bulevar kralja aleksandra i karadordevica 19 булевар краља александра i карађорђевића 19","biraca":106,"prebivaliste":106,"boraviste":0,"stanova":14.0,"odnos":7.57,"pouzdanost":"dobra","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.804351,"lon":20.453539,"status":"neprovereno","komentari":[]},{"id":7,"ulica":"ДР СУБОТИЋА-СТАРИЈЕГ","broj":"13","adresa":"ДР СУБОТИЋА-СТАРИЈЕГ 13","trazi":"dr subotica-starijeg 13 др суботића-старијег 13","biraca":89,"prebivaliste":89,"boraviste":0,"stanova":null,"odnos":null,"pouzdanost":"nema","kat":"nestambena","prioritet":1,"nalazi":["nestambena adresa"],"objekat":["OSTALE ZGRADE","POMOĆNA ZGRADA-DEO","ZGRADA ZDRAVSTVA"],"javni":"","lat":44.796926,"lon":20.461585,"status":"neprovereno","komentari":[]},{"id":8,"ulica":"ХУМСКА","broj":"16","adresa":"ХУМСКА 16","trazi":"humska 16 хумска 16","biraca":87,"prebivaliste":87,"boraviste":0,"stanova":18.0,"odnos":4.83,"pouzdanost":"dobra","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.789764,"lon":20.460469,"status":"neprovereno","komentari":[]},{"id":9,"ulica":"ЗВЕЧАНСКА","broj":"9","adresa":"ЗВЕЧАНСКА 9","trazi":"zvecanska 9 звечанска 9","biraca":83,"prebivaliste":83,"boraviste":0,"stanova":1.0,"odnos":83.0,"pouzdanost":"niska","kat":"nepotpun","prioritet":2,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.791014,"lon":20.461135,"status":"neprovereno","komentari":[]},{"id":10,"ulica":"АДМИРАЛА ГЕПРАТА","broj":"8-А","adresa":"АДМИРАЛА ГЕПРАТА 8-А","trazi":"admirala geprata 8-a адмирала гепрата 8-а","biraca":82,"prebivaliste":82,"boraviste":0,"stanova":10.0,"odnos":8.2,"pouzdanost":"dobra","kat":"visok","prioritet":5,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.808393,"lon":20.459637,"status":"neprovereno","komentari":[]},{"id":11,"ulica":"ТЕОДОРА ДРАЈЗЕРА","broj":"4","adresa":"ТЕОДОРА ДРАЈЗЕРА 4","trazi":"teodora drajzera 4 теодора драјзера 4","biraca":82,"prebivaliste":82,"boraviste":0,"stanova":6.0,"odnos":13.67,"pouzdanost":"dobra","kat":"visok","prioritet":5,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.780491,"lon":20.445313,"status":"neprovereno","komentari":[]},{"id":12,"ulica":"СИМЕ ЛОЗАНИЋА","broj":"1","adresa":"СИМЕ ЛОЗАНИЋА 1","trazi":"sime lozanica 1 симе лозанића 1","biraca":78,"prebivaliste":78,"boraviste":0,"stanova":6.0,"odnos":13.0,"pouzdanost":"dobra","kat":"visok","prioritet":5,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.774698,"lon":20.466283,"status":"neprovereno","komentari":[]},{"id":13,"ulica":"ХУМСКА","broj":"14","adresa":"ХУМСКА 14","trazi":"humska 14 хумска 14","biraca":78,"prebivaliste":78,"boraviste":0,"stanova":16.0,"odnos":4.88,"pouzdanost":"dobra","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.789681,"lon":20.46095,"status":"neprovereno","komentari":[]},{"id":14,"ulica":"ПАЛАЦКОВА","broj":"8","adresa":"ПАЛАЦКОВА 8","trazi":"palackova 8 палацкова 8","biraca":75,"prebivaliste":75,"boraviste":0,"stanova":8.0,"odnos":9.38,"pouzdanost":"dobra","kat":"visok","prioritet":5,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.773929,"lon":20.466335,"status":"neprovereno","komentari":[]},{"id":15,"ulica":"БУЛЕВАР КРАЉА АЛЕКСАНДРА I КАРАЂОРЂЕВИЋА","broj":"17","adresa":"БУЛЕВАР КРАЉА АЛЕКСАНДРА I КАРАЂОРЂЕВИЋА 17","trazi":"bulevar kralja aleksandra i karadordevica 17 булевар краља александра i карађорђевића 17","biraca":74,"prebivaliste":74,"boraviste":0,"stanova":11.0,"odnos":6.73,"pouzdanost":"dobra","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.805817,"lon":20.454639,"status":"neprovereno","komentari":[]},{"id":16,"ulica":"РЕСАВСКА","broj":"36","adresa":"РЕСАВСКА 36","trazi":"resavska 36 ресавска 36","biraca":69,"prebivaliste":69,"boraviste":0,"stanova":13.0,"odnos":5.31,"pouzdanost":"dobra","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.806071,"lon":20.463405,"status":"neprovereno","komentari":[]},{"id":17,"ulica":"СИМЕ ЛОЗАНИЋА","broj":"2","adresa":"СИМЕ ЛОЗАНИЋА 2","trazi":"sime lozanica 2 симе лозанића 2","biraca":68,"prebivaliste":68,"boraviste":0,"stanova":8.0,"odnos":8.5,"pouzdanost":"dobra","kat":"visok","prioritet":5,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.775067,"lon":20.466505,"status":"neprovereno","komentari":[]},{"id":18,"ulica":"ХУМСКА","broj":"18","adresa":"ХУМСКА 18","trazi":"humska 18 хумска 18","biraca":64,"prebivaliste":63,"boraviste":1,"stanova":14.0,"odnos":4.57,"pouzdanost":"dobra","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.789858,"lon":20.45997,"status":"neprovereno","komentari":[]},{"id":19,"ulica":"ВИШЕГРАДСКА","broj":"29","adresa":"ВИШЕГРАДСКА 29","trazi":"visegradska 29 вишеградска 29","biraca":57,"prebivaliste":57,"boraviste":0,"stanova":11.0,"odnos":5.18,"pouzdanost":"dobra","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.800568,"lon":20.456168,"status":"neprovereno","komentari":[]},{"id":20,"ulica":"РУСКА","broj":"3-А","adresa":"РУСКА 3-А","trazi":"ruska 3-a руска 3-а","biraca":54,"prebivaliste":54,"boraviste":0,"stanova":9.0,"odnos":6.0,"pouzdanost":"dobra","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.793697,"lon":20.437467,"status":"neprovereno","komentari":[]},{"id":21,"ulica":"ВОЈВОДЕ МИЛЕНКА","broj":"44","adresa":"ВОЈВОДЕ МИЛЕНКА 44","trazi":"vojvode milenka 44 војводе миленка 44","biraca":52,"prebivaliste":52,"boraviste":0,"stanova":11.0,"odnos":4.73,"pouzdanost":"dobra","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.802092,"lon":20.460259,"status":"neprovereno","komentari":[]},{"id":22,"ulica":"ГАВРИЛА ПРИНЦИПА","broj":"53","adresa":"ГАВРИЛА ПРИНЦИПА 53","trazi":"gavrila principa 53 гаврила принципа 53","biraca":51,"prebivaliste":51,"boraviste":0,"stanova":1.0,"odnos":51.0,"pouzdanost":"niska","kat":"nepotpun","prioritet":2,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.811079,"lon":20.456937,"status":"neprovereno","komentari":[]},{"id":23,"ulica":"БУЛЕВАР КРАЉА АЛЕКСАНДРА I КАРАЂОРЂЕВИЋА","broj":"13","adresa":"БУЛЕВАР КРАЉА АЛЕКСАНДРА I КАРАЂОРЂЕВИЋА 13","trazi":"bulevar kralja aleksandra i karadordevica 13 булевар краља александра i карађорђевића 13","biraca":48,"prebivaliste":48,"boraviste":0,"stanova":10.0,"odnos":4.8,"pouzdanost":"dobra","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.806043,"lon":20.454918,"status":"neprovereno","komentari":[]},{"id":24,"ulica":"ПИВЉАНИНА БАЈА","broj":"77","adresa":"ПИВЉАНИНА БАЈА 77","trazi":"pivljanina baja 77 пивљанина баја 77","biraca":45,"prebivaliste":45,"boraviste":0,"stanova":1.0,"odnos":45.0,"pouzdanost":"niska","kat":"nepotpun","prioritet":2,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.759732,"lon":20.452574,"status":"neprovereno","komentari":[]},{"id":25,"ulica":"РАЈКА МИТИЋА","broj":"5","adresa":"РАЈКА МИТИЋА 5","trazi":"rajka mitica 5 рајка митића 5","biraca":45,"prebivaliste":45,"boraviste":0,"stanova":2.0,"odnos":22.5,"pouzdanost":"niska","kat":"nepotpun","prioritet":2,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.779865,"lon":20.465601,"status":"neprovereno","komentari":[]},{"id":26,"ulica":"КОСТЕ ГЛАВИНИЋА","broj":"19","adresa":"КОСТЕ ГЛАВИНИЋА 19","trazi":"koste glavinica 19 косте главинића 19","biraca":43,"prebivaliste":43,"boraviste":0,"stanova":3.0,"odnos":14.33,"pouzdanost":"srednja","kat":"visok","prioritet":5,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.794086,"lon":20.439654,"status":"neprovereno","komentari":[]},{"id":27,"ulica":"БАЛКАНСКА","broj":"24","adresa":"БАЛКАНСКА 24","trazi":"balkanska 24 балканска 24","biraca":42,"prebivaliste":38,"boraviste":4,"stanova":8.0,"odnos":5.25,"pouzdanost":"dobra","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.810586,"lon":20.459556,"status":"neprovereno","komentari":[]},{"id":28,"ulica":"ДУРМИТОРСКА","broj":"11","adresa":"ДУРМИТОРСКА 11","trazi":"durmitorska 11 дурмиторска 11","biraca":41,"prebivaliste":40,"boraviste":1,"stanova":null,"odnos":null,"pouzdanost":"nema","kat":"nestambena","prioritet":1,"nalazi":["nestambena adresa"],"objekat":["POMOĆNA ZGRADA","ZGRADA ZDRAVSTVA"],"javni":"","lat":44.80102,"lon":20.452823,"status":"neprovereno","komentari":[]},{"id":29,"ulica":"КРОНШТАТСКА","broj":"12","adresa":"КРОНШТАТСКА 12","trazi":"kronstatska 12 кронштатска 12","biraca":39,"prebivaliste":39,"boraviste":0,"stanova":6.0,"odnos":6.5,"pouzdanost":"dobra","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.777612,"lon":20.454763,"status":"neprovereno","komentari":[]},{"id":30,"ulica":"ВЕЉКА ЛУКИЋА-КУРЈАКА","broj":"12","adresa":"ВЕЉКА ЛУКИЋА-КУРЈАКА 12","trazi":"veljka lukica-kurjaka 12 вељка лукића-курјака 12","biraca":38,"prebivaliste":38,"boraviste":0,"stanova":8.0,"odnos":4.75,"pouzdanost":"dobra","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.770809,"lon":20.466007,"status":"neprovereno","komentari":[]},{"id":31,"ulica":"КОСТЕ ГЛАВИНИЋА","broj":"33","adresa":"КОСТЕ ГЛАВИНИЋА 33","trazi":"koste glavinica 33 косте главинића 33","biraca":38,"prebivaliste":38,"boraviste":0,"stanova":6.0,"odnos":6.33,"pouzdanost":"dobra","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.792727,"lon":20.437077,"status":"neprovereno","komentari":[]},{"id":32,"ulica":"ЛОМИНА","broj":"8","adresa":"ЛОМИНА 8","trazi":"lomina 8 ломина 8","biraca":37,"prebivaliste":37,"boraviste":0,"stanova":1.0,"odnos":37.0,"pouzdanost":"niska","kat":"nepotpun","prioritet":2,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.81205,"lon":20.457186,"status":"neprovereno","komentari":[]},{"id":33,"ulica":"СИТНИЧКА","broj":"21","adresa":"СИТНИЧКА 21","trazi":"sitnicka 21 ситничка 21","biraca":37,"prebivaliste":37,"boraviste":0,"stanova":7.0,"odnos":5.29,"pouzdanost":"dobra","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.795954,"lon":20.446637,"status":"neprovereno","komentari":[]},{"id":34,"ulica":"КАРАЂОРЂЕВА","broj":"50","adresa":"КАРАЂОРЂЕВА 50","trazi":"karadordeva 50 карађорђева 50","biraca":36,"prebivaliste":36,"boraviste":0,"stanova":null,"odnos":null,"pouzdanost":"nema","kat":"javni","prioritet":1,"nalazi":["nestambena adresa","javni objekat"],"objekat":["POMOĆNA ZGRADA","ZGRADA UGOSTITELJSTVA"],"javni":"Хотел „Бристол” · споменик културе","lat":44.812773,"lon":20.452688,"status":"neprovereno","komentari":[]},{"id":35,"ulica":"БУЛЕВАР КНЕЗА АЛЕКСАНДРА КАРАЂОРЂЕВИЋА","broj":"72","adresa":"БУЛЕВАР КНЕЗА АЛЕКСАНДРА КАРАЂОРЂЕВИЋА 72","trazi":"bulevar kneza aleksandra karadordevica 72 булевар кнеза александра карађорђевића 72","biraca":35,"prebivaliste":35,"boraviste":0,"stanova":5.0,"odnos":7.0,"pouzdanost":"srednja","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.775303,"lon":20.456285,"status":"neprovereno","komentari":[]},{"id":36,"ulica":"ВОЈВОДЕ МИЛЕНКА","broj":"46","adresa":"ВОЈВОДЕ МИЛЕНКА 46","trazi":"vojvode milenka 46 војводе миленка 46","biraca":34,"prebivaliste":34,"boraviste":0,"stanova":7.0,"odnos":4.86,"pouzdanost":"dobra","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.801947,"lon":20.460472,"status":"neprovereno","komentari":[]},{"id":37,"ulica":"ВИШЕГРАДСКА","broj":"26","adresa":"ВИШЕГРАДСКА 26","trazi":"visegradska 26 вишеградска 26","biraca":33,"prebivaliste":33,"boraviste":0,"stanova":1.0,"odnos":33.0,"pouzdanost":"niska","kat":"nepotpun","prioritet":2,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.800124,"lon":20.455866,"status":"neprovereno","komentari":[]},{"id":38,"ulica":"ВОЈВОДЕ МИЛЕНКА","broj":"50","adresa":"ВОЈВОДЕ МИЛЕНКА 50","trazi":"vojvode milenka 50 војводе миленка 50","biraca":33,"prebivaliste":33,"boraviste":0,"stanova":1.0,"odnos":33.0,"pouzdanost":"niska","kat":"nepotpun","prioritet":2,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.801756,"lon":20.460871,"status":"neprovereno","komentari":[]},{"id":39,"ulica":"БУЛЕВАР КНЕЗА АЛЕКСАНДРА КАРАЂОРЂЕВИЋА","broj":"88","adresa":"БУЛЕВАР КНЕЗА АЛЕКСАНДРА КАРАЂОРЂЕВИЋА 88","trazi":"bulevar kneza aleksandra karadordevica 88 булевар кнеза александра карађорђевића 88","biraca":31,"prebivaliste":31,"boraviste":0,"stanova":5.0,"odnos":6.2,"pouzdanost":"srednja","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.773069,"lon":20.454684,"status":"neprovereno","komentari":[]},{"id":40,"ulica":"КОЧЕ ПОПОВИЋА","broj":"7","adresa":"КОЧЕ ПОПОВИЋА 7","trazi":"koce popovica 7 коче поповића 7","biraca":29,"prebivaliste":29,"boraviste":0,"stanova":3.0,"odnos":9.67,"pouzdanost":"srednja","kat":"visok","prioritet":4,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.81281,"lon":20.454372,"status":"neprovereno","komentari":[]},{"id":41,"ulica":"БУЛЕВАР КНЕЗА АЛЕКСАНДРА КАРАЂОРЂЕВИЋА","broj":"84","adresa":"БУЛЕВАР КНЕЗА АЛЕКСАНДРА КАРАЂОРЂЕВИЋА 84","trazi":"bulevar kneza aleksandra karadordevica 84 булевар кнеза александра карађорђевића 84","biraca":28,"prebivaliste":28,"boraviste":0,"stanova":4.0,"odnos":7.0,"pouzdanost":"srednja","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.773788,"lon":20.454936,"status":"neprovereno","komentari":[]},{"id":42,"ulica":"ЛОМИНА","broj":"17","adresa":"ЛОМИНА 17","trazi":"lomina 17 ломина 17","biraca":28,"prebivaliste":28,"boraviste":0,"stanova":6.0,"odnos":4.67,"pouzdanost":"dobra","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.811982,"lon":20.457497,"status":"neprovereno","komentari":[]},{"id":43,"ulica":"ЈОВАНА МАРИНОВИЋА","broj":"5","adresa":"ЈОВАНА МАРИНОВИЋА 5","trazi":"jovana marinovica 5 јована мариновића 5","biraca":27,"prebivaliste":27,"boraviste":0,"stanova":5.0,"odnos":5.4,"pouzdanost":"srednja","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.776217,"lon":20.455428,"status":"neprovereno","komentari":[]},{"id":44,"ulica":"ВЕЉКА ЛУКИЋА-КУРЈАКА","broj":"2","adresa":"ВЕЉКА ЛУКИЋА-КУРЈАКА 2","trazi":"veljka lukica-kurjaka 2 вељка лукића-курјака 2","biraca":27,"prebivaliste":27,"boraviste":0,"stanova":4.0,"odnos":6.75,"pouzdanost":"srednja","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.773039,"lon":20.466789,"status":"neprovereno","komentari":[]},{"id":45,"ulica":"ТЕОДОРА ДРАЈЗЕРА","broj":"6","adresa":"ТЕОДОРА ДРАЈЗЕРА 6","trazi":"teodora drajzera 6 теодора драјзера 6","biraca":27,"prebivaliste":27,"boraviste":0,"stanova":6.0,"odnos":4.5,"pouzdanost":"dobra","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.780487,"lon":20.446508,"status":"neprovereno","komentari":[]},{"id":46,"ulica":"БУЛЕВАР КНЕЗА АЛЕКСАНДРА КАРАЂОРЂЕВИЋА","broj":"74","adresa":"БУЛЕВАР КНЕЗА АЛЕКСАНДРА КАРАЂОРЂЕВИЋА 74","trazi":"bulevar kneza aleksandra karadordevica 74 булевар кнеза александра карађорђевића 74","biraca":26,"prebivaliste":26,"boraviste":0,"stanova":4.0,"odnos":6.5,"pouzdanost":"srednja","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.77503,"lon":20.45595,"status":"neprovereno","komentari":[]},{"id":47,"ulica":"МАЛЕШКА","broj":"7-А","adresa":"МАЛЕШКА 7-А","trazi":"maleska 7-a малешка 7-а","biraca":25,"prebivaliste":25,"boraviste":0,"stanova":5.0,"odnos":5.0,"pouzdanost":"srednja","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.794185,"lon":20.456727,"status":"neprovereno","komentari":[]},{"id":48,"ulica":"СВЕТОГ НАУМА","broj":"7","adresa":"СВЕТОГ НАУМА 7","trazi":"svetog nauma 7 светог наума 7","biraca":25,"prebivaliste":25,"boraviste":0,"stanova":4.0,"odnos":6.25,"pouzdanost":"srednja","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.793448,"lon":20.441145,"status":"neprovereno","komentari":[]},{"id":49,"ulica":"ГАВРИЛА ПРИНЦИПА","broj":"63","adresa":"ГАВРИЛА ПРИНЦИПА 63","trazi":"gavrila principa 63 гаврила принципа 63","biraca":24,"prebivaliste":24,"boraviste":0,"stanova":null,"odnos":null,"pouzdanost":"nema","kat":"nestambena","prioritet":1,"nalazi":["nestambena adresa"],"objekat":["OBJEKAT DRVNE INDUSTRIJE, INDUSTRIJE NAMEŠTAJA I PROIZVODNJE PAPIRA","OBJEKAT POSLOVNIH USLUGA"],"javni":"","lat":44.810289,"lon":20.457696,"status":"neprovereno","komentari":[]},{"id":50,"ulica":"ОБЛАКОВСКА","broj":"9","adresa":"ОБЛАКОВСКА 9","trazi":"oblakovska 9 облаковска 9","biraca":24,"prebivaliste":24,"boraviste":0,"stanova":2.0,"odnos":12.0,"pouzdanost":"niska","kat":"nepotpun","prioritet":2,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.79095,"lon":20.465873,"status":"neprovereno","komentari":[]},{"id":51,"ulica":"СЕЊАЧКА","broj":"27","adresa":"СЕЊАЧКА 27","trazi":"senjacka 27 сењачка 27","biraca":24,"prebivaliste":24,"boraviste":0,"stanova":5.0,"odnos":4.8,"pouzdanost":"srednja","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.792944,"lon":20.439336,"status":"neprovereno","komentari":[]},{"id":52,"ulica":"ВОЈВОДЕ МИЛЕНКА","broj":"34","adresa":"ВОЈВОДЕ МИЛЕНКА 34","trazi":"vojvode milenka 34 војводе миленка 34","biraca":23,"prebivaliste":23,"boraviste":0,"stanova":5.0,"odnos":4.6,"pouzdanost":"srednja","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.802881,"lon":20.459014,"status":"neprovereno","komentari":[]},{"id":53,"ulica":"ДР СУБОТИЋА-СТАРИЈЕГ","broj":"5","adresa":"ДР СУБОТИЋА-СТАРИЈЕГ 5","trazi":"dr subotica-starijeg 5 др суботића-старијег 5","biraca":22,"prebivaliste":22,"boraviste":0,"stanova":null,"odnos":null,"pouzdanost":"nema","kat":"javni","prioritet":1,"nalazi":["nestambena adresa","javni objekat"],"objekat":["GARAŽA","OSTALE ZGRADE","ZGRADA ZDRAVSTVA"],"javni":"Агенција за акредитацију здравствених установа Србије · јавни објекат (+1)","lat":44.797181,"lon":20.463104,"status":"neprovereno","komentari":[]},{"id":54,"ulica":"СИТНИЧКА","broj":"37","adresa":"СИТНИЧКА 37","trazi":"sitnicka 37 ситничка 37","biraca":22,"prebivaliste":22,"boraviste":0,"stanova":1.0,"odnos":22.0,"pouzdanost":"niska","kat":"nepotpun","prioritet":2,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.795179,"lon":20.444642,"status":"neprovereno","komentari":[]},{"id":55,"ulica":"ВЕЉКА ЛУКИЋА-КУРЈАКА","broj":"10","adresa":"ВЕЉКА ЛУКИЋА-КУРЈАКА 10","trazi":"veljka lukica-kurjaka 10 вељка лукића-курјака 10","biraca":21,"prebivaliste":21,"boraviste":0,"stanova":2.0,"odnos":10.5,"pouzdanost":"niska","kat":"nepotpun","prioritet":2,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.77139,"lon":20.466166,"status":"neprovereno","komentari":[]},{"id":56,"ulica":"ЛОМИНА","broj":"7","adresa":"ЛОМИНА 7","trazi":"lomina 7 ломина 7","biraca":21,"prebivaliste":21,"boraviste":0,"stanova":null,"odnos":null,"pouzdanost":"nema","kat":"nestambena","prioritet":1,"nalazi":["nestambena adresa"],"objekat":["OSTALE ZGRADE","OSTALE ZGRADE-DEO","TRAFO STANICA"],"javni":"","lat":44.812509,"lon":20.457237,"status":"neprovereno","komentari":[]},{"id":57,"ulica":"МИЛОЈА ЂАКА","broj":"36","adresa":"МИЛОЈА ЂАКА 36","trazi":"miloja daka 36 милоја ђака 36","biraca":21,"prebivaliste":21,"boraviste":0,"stanova":1.0,"odnos":21.0,"pouzdanost":"niska","kat":"nepotpun","prioritet":2,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.76451,"lon":20.457774,"status":"neprovereno","komentari":[]},{"id":58,"ulica":"ЗВЕЧАНСКА","broj":"7","adresa":"ЗВЕЧАНСКА 7","trazi":"zvecanska 7 звечанска 7","biraca":20,"prebivaliste":20,"boraviste":0,"stanova":null,"odnos":null,"pouzdanost":"nema","kat":"nestambena","prioritet":1,"nalazi":["nestambena adresa"],"objekat":["ZGRADA ZA ZAŠTITU DECE I OMLADINE"],"javni":"","lat":44.790343,"lon":20.462743,"status":"neprovereno","komentari":[]},{"id":59,"ulica":"КНЕЗА МИЛОША","broj":"54","adresa":"КНЕЗА МИЛОША 54","trazi":"kneza milosa 54 кнеза милоша 54","biraca":20,"prebivaliste":20,"boraviste":0,"stanova":4.0,"odnos":5.0,"pouzdanost":"srednja","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.803379,"lon":20.457,"status":"neprovereno","komentari":[]},{"id":60,"ulica":"ЉУТИЦЕ БОГДАНА","broj":"1А","adresa":"ЉУТИЦЕ БОГДАНА 1А","trazi":"ljutice bogdana 1a љутице богдана 1а","biraca":19,"prebivaliste":19,"boraviste":0,"stanova":null,"odnos":null,"pouzdanost":"nema","kat":"javni","prioritet":1,"nalazi":["nestambena adresa","javni objekat"],"objekat":["ZGRADA ZA SPORT I FIZIČKU KULTURU"],"javni":"Музеј Фудбалског клуба „Црвена звезда” · музеј","lat":44.785209,"lon":20.463334,"status":"neprovereno","komentari":[]},{"id":61,"ulica":"ПЛЗЕЊСКА","broj":"2","adresa":"ПЛЗЕЊСКА 2","trazi":"plzenjska 2 плзењска 2","biraca":19,"prebivaliste":16,"boraviste":3,"stanova":4.0,"odnos":4.75,"pouzdanost":"srednja","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.79457,"lon":20.455099,"status":"neprovereno","komentari":[]},{"id":62,"ulica":"БУЛЕВАР ВОЈВОДЕ МИШИЋА","broj":"43-А","adresa":"БУЛЕВАР ВОЈВОДЕ МИШИЋА 43-А","trazi":"bulevar vojvode misica 43-a булевар војводе мишића 43-а","biraca":18,"prebivaliste":17,"boraviste":1,"stanova":4.0,"odnos":4.5,"pouzdanost":"srednja","kat":"umeren","prioritet":3,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.794625,"lon":20.435416,"status":"neprovereno","komentari":[]},{"id":63,"ulica":"ВОЈИСЛАВА ВУЧКОВИЋА","broj":"2","adresa":"ВОЈИСЛАВА ВУЧКОВИЋА 2","trazi":"vojislava vuckovica 2 војислава вучковића 2","biraca":18,"prebivaliste":18,"boraviste":0,"stanova":2.0,"odnos":9.0,"pouzdanost":"niska","kat":"nepotpun","prioritet":2,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.793015,"lon":20.438194,"status":"neprovereno","komentari":[]},{"id":64,"ulica":"ЛАЗАРА СОЧИЦЕ","broj":"4","adresa":"ЛАЗАРА СОЧИЦЕ 4","trazi":"lazara socice 4 лазара сочице 4","biraca":18,"prebivaliste":18,"boraviste":0,"stanova":1.0,"odnos":18.0,"pouzdanost":"niska","kat":"nepotpun","prioritet":2,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.79365,"lon":20.457254,"status":"neprovereno","komentari":[]},{"id":65,"ulica":"САРАЈЕВСКА","broj":"80","adresa":"САРАЈЕВСКА 80","trazi":"sarajevska 80 сарајевска 80","biraca":18,"prebivaliste":18,"boraviste":0,"stanova":2.0,"odnos":9.0,"pouzdanost":"niska","kat":"nepotpun","prioritet":2,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.800476,"lon":20.451079,"status":"neprovereno","komentari":[]},{"id":66,"ulica":"БУЛЕВАР КРАЉА АЛЕКСАНДРА I КАРАЂОРЂЕВИЋА","broj":"1","adresa":"БУЛЕВАР КРАЉА АЛЕКСАНДРА I КАРАЂОРЂЕВИЋА 1","trazi":"bulevar kralja aleksandra i karadordevica 1 булевар краља александра i карађорђевића 1","biraca":17,"prebivaliste":17,"boraviste":0,"stanova":1.0,"odnos":17.0,"pouzdanost":"niska","kat":"nepotpun","prioritet":2,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.807152,"lon":20.455726,"status":"neprovereno","komentari":[]},{"id":67,"ulica":"ГАВРИЛА ПРИНЦИПА","broj":"16","adresa":"ГАВРИЛА ПРИНЦИПА 16","trazi":"gavrila principa 16 гаврила принципа 16","biraca":17,"prebivaliste":17,"boraviste":0,"stanova":2.0,"odnos":8.5,"pouzdanost":"niska","kat":"nepotpun","prioritet":2,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.813139,"lon":20.454676,"status":"neprovereno","komentari":[]},{"id":68,"ulica":"ОБЛАКОВСКА","broj":"22","adresa":"ОБЛАКОВСКА 22","trazi":"oblakovska 22 облаковска 22","biraca":17,"prebivaliste":17,"boraviste":0,"stanova":2.0,"odnos":8.5,"pouzdanost":"niska","kat":"nepotpun","prioritet":2,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.792603,"lon":20.464009,"status":"neprovereno","komentari":[]},{"id":69,"ulica":"СУВОБОРСКА","broj":"14","adresa":"СУВОБОРСКА 14","trazi":"suvoborska 14 сувоборска 14","biraca":17,"prebivaliste":17,"boraviste":0,"stanova":2.0,"odnos":8.5,"pouzdanost":"niska","kat":"nepotpun","prioritet":2,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.79279,"lon":20.444796,"status":"neprovereno","komentari":[]},{"id":70,"ulica":"ДР СУБОТИЋА-СТАРИЈЕГ","broj":"4","adresa":"ДР СУБОТИЋА-СТАРИЈЕГ 4","trazi":"dr subotica-starijeg 4 др суботића-старијег 4","biraca":16,"prebivaliste":16,"boraviste":0,"stanova":null,"odnos":null,"pouzdanost":"nema","kat":"nestambena","prioritet":1,"nalazi":["nestambena adresa"],"objekat":["OSTALE ZGRADE","POMOĆNA ZGRADA","POSLOVNA ZGRADA ZA KOJU NIJE UTVRĐENA DELATNOST","ZGRADA ZDRAVSTVA"],"javni":"","lat":44.797665,"lon":20.463417,"status":"neprovereno","komentari":[]},{"id":71,"ulica":"МИЛОЈА ЂАКА","broj":"3","adresa":"МИЛОЈА ЂАКА 3","trazi":"miloja daka 3 милоја ђака 3","biraca":16,"prebivaliste":16,"boraviste":0,"stanova":1.0,"odnos":16.0,"pouzdanost":"niska","kat":"nepotpun","prioritet":2,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.76685,"lon":20.457601,"status":"neprovereno","komentari":[]},{"id":72,"ulica":"ПЛЗЕЊСКА","broj":"12","adresa":"ПЛЗЕЊСКА 12","trazi":"plzenjska 12 плзењска 12","biraca":16,"prebivaliste":16,"boraviste":0,"stanova":1.0,"odnos":16.0,"pouzdanost":"niska","kat":"nepotpun","prioritet":2,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.794037,"lon":20.455801,"status":"neprovereno","komentari":[]},{"id":73,"ulica":"ПЛЗЕЊСКА","broj":"14","adresa":"ПЛЗЕЊСКА 14","trazi":"plzenjska 14 плзењска 14","biraca":16,"prebivaliste":16,"boraviste":0,"stanova":1.0,"odnos":16.0,"pouzdanost":"niska","kat":"nepotpun","prioritet":2,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.793931,"lon":20.455974,"status":"neprovereno","komentari":[]},{"id":74,"ulica":"КОЧЕ ПОПОВИЋА","broj":"3","adresa":"КОЧЕ ПОПОВИЋА 3","trazi":"koce popovica 3 коче поповића 3","biraca":15,"prebivaliste":15,"boraviste":0,"stanova":2.0,"odnos":7.5,"pouzdanost":"niska","kat":"nepotpun","prioritet":2,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.812624,"lon":20.454012,"status":"neprovereno","komentari":[]},{"id":75,"ulica":"МАЛЕШКА","broj":"4","adresa":"МАЛЕШКА 4","trazi":"maleska 4 малешка 4","biraca":15,"prebivaliste":15,"boraviste":0,"stanova":2.0,"odnos":7.5,"pouzdanost":"niska","kat":"nepotpun","prioritet":2,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.793917,"lon":20.457987,"status":"neprovereno","komentari":[]},{"id":76,"ulica":"ОБЛАКОВСКА","broj":"15","adresa":"ОБЛАКОВСКА 15","trazi":"oblakovska 15 облаковска 15","biraca":15,"prebivaliste":15,"boraviste":0,"stanova":2.0,"odnos":7.5,"pouzdanost":"niska","kat":"nepotpun","prioritet":2,"nalazi":["visoka koncentracija birača"],"objekat":[],"javni":"","lat":44.791174,"lon":20.465529,"status":"neprovereno","komentari":[]},{"id":77,"ulica":"ЦРНОТРАВСКА","broj":"17","adresa":"ЦРНОТРАВСКА 17","trazi":"crnotravska 17 црнотравска 17","biraca":15,"prebivaliste":15,"boraviste":0,"stanova":null,"odnos":null,"pouzdanost":"nema","kat":"javni","prioritet":1,"nalazi":["javni objekat"],"objekat":[],"javni":"Болничка капела, Параклис Светог Луке Архиепископа симферопољског · црква","lat":44.76474,"lon":20.468152,"status":"neprovereno","komentari":[]}];
+
+/* ---------- pismo ---------- */
+const MAP_CL = {'А':'A','Б':'B','В':'V','Г':'G','Д':'D','Ђ':'Đ','Е':'E','Ж':'Ž','З':'Z','И':'I','Ј':'J',
+'К':'K','Л':'L','Љ':'Lj','М':'M','Н':'N','Њ':'Nj','О':'O','П':'P','Р':'R','С':'S','Т':'T','Ћ':'Ć','У':'U',
+'Ф':'F','Х':'H','Ц':'C','Ч':'Č','Џ':'Dž','Ш':'Š','а':'a','б':'b','в':'v','г':'g','д':'d','ђ':'đ','е':'e',
+'ж':'ž','з':'z','и':'i','ј':'j','к':'k','л':'l','љ':'lj','м':'m','н':'n','њ':'nj','о':'o','п':'p','р':'r',
+'с':'s','т':'t','ћ':'ć','у':'u','ф':'f','х':'h','ц':'c','ч':'č','џ':'dž','ш':'š'};
+let PISMO = 'cir';
+try{ const s = localStorage.getItem('pismo'); if(s) PISMO = s; }catch(e){}
+function lat(t){ return String(t).replace(/[Ѐ-ӿ]/g, c => MAP_CL[c] ?? c); }
+function txt(t){ return PISMO === 'lat' ? lat(t) : t; }
+
+/* ---------- formati ---------- */
+const nf = new Intl.NumberFormat('sr-RS');
+const df = new Intl.NumberFormat('sr-RS', {maximumFractionDigits:2});
+const KAT = {
+  visok:      {ime:'Visoka koncentracija', boja:'var(--c-visok)',      bg:'var(--c-visok-bg)'},
+  umeren:     {ime:'Umerena koncentracija',boja:'var(--c-umeren)',     bg:'var(--c-umeren-bg)'},
+  nepotpun:   {ime:'Nepotpun podatak',     boja:'var(--c-nepotpun)',   bg:'var(--c-nepotpun-bg)'},
+  nestambena: {ime:'Nestambeni objekat',   boja:'var(--c-nestambena)', bg:'var(--c-nestambena-bg)'},
+  javni:      {ime:'Javni objekat',        boja:'var(--c-javni)',      bg:'var(--c-javni-bg)'}
+};
+const POUZDANOST = {
+  dobra:'procena zgrade deluje upotrebljivo',
+  srednja:'procena zgrade je gruba',
+  niska:'procena zgrade je verovatno nepotpuna',
+  nema:'nema procene broja stanova'
+};
+function pitanje(z){
+  const a = txt(z.adresa);
+  if(z.kat === 'javni' || z.kat === 'nestambena')
+    return 'Da li na adresi ' + a + ' uopšte neko stanuje, i koliko otprilike ljudi?';
+  if(z.kat === 'nepotpun')
+    return 'Koliko stanova stvarno ima zgrada na adresi ' + a + '?';
+  return 'Da li je na adresi ' + a + ' stambena zgrada sa oko ' + df.format(z.stanova) +
+         ' stanova, i deluje li vam ' + nf.format(z.biraca) + ' upisanih birača realno?';
+}
+
+/* ---------- stanje ---------- */
+const aktivne = new Set(Object.keys(KAT));
+let izabrana = null, poredak = 'biraca', upit = '';
+
+function filtrirano(){
+  const u = upit.trim().toLowerCase();
+  let r = PODACI.filter(z => aktivne.has(z.kat) && (!u || z.trazi.includes(u)));
+  const s = {
+    biraca:   (a,b) => b.biraca - a.biraca,
+    odnos:    (a,b) => (b.odnos ?? -1) - (a.odnos ?? -1) || b.biraca - a.biraca,
+    prioritet:(a,b) => b.prioritet - a.prioritet || b.biraca - a.biraca,
+    ulica:    (a,b) => a.adresa.localeCompare(b.adresa,'sr')
+  }[poredak];
+  return r.sort(s);
+}
+
+/* ---------- zbirni podaci ---------- */
+function zbir(){
+  document.getElementById('sAdr').textContent  = nf.format(PODACI.length);
+  document.getElementById('sBir').textContent  = nf.format(PODACI.reduce((a,z)=>a+z.biraca,0));
+  document.getElementById('sUl').textContent   = nf.format(new Set(PODACI.map(z=>z.ulica)).size);
+  const p = PODACI.filter(z=>z.status!=='neprovereno').length;
+  document.getElementById('sProv').textContent = nf.format(p) + ' / ' + nf.format(PODACI.length);
+}
+
+/* ---------- čipovi ---------- */
+function chips(){
+  const el = document.getElementById('chips');
+  el.innerHTML = '';
+  for(const [k,v] of Object.entries(KAT)){
+    const n = PODACI.filter(z=>z.kat===k).length;
+    if(!n) continue;
+    const b = document.createElement('button');
+    b.type='button'; b.className='chip'; b.setAttribute('aria-pressed', aktivne.has(k));
+    b.innerHTML = '<span class="dot" style="background:'+v.boja+'"></span>' + v.ime +
+                  ' <span class="cnt">'+n+'</span>';
+    b.onclick = () => {
+      aktivne.has(k) ? aktivne.delete(k) : aktivne.add(k);
+      if(!aktivne.size) Object.keys(KAT).forEach(x=>aktivne.add(x));
+      b.setAttribute('aria-pressed', aktivne.has(k));
+      chips(); crtaj();
+    };
+    el.appendChild(b);
+  }
+}
+
+/* ---------- lista ---------- */
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function karta(z){
+  const k = KAT[z.kat];
+  const d = document.createElement('div');
+  d.className = 'kart' + (izabrana === z.id ? ' sel' : '');
+  d.id = 'a' + z.id;
+  const otv = izabrana === z.id;
+  if(otv) d.setAttribute('open','');
+
+  const meta = [];
+  if(z.stanova) meta.push('<span class="mono">'+df.format(z.stanova)+'</span> stanova');
+  if(z.odnos)   meta.push('<span class="mono">'+df.format(z.odnos)+'×</span> po stanu');
+  if(z.boraviste) meta.push('<span class="mono">'+z.boraviste+'</span> boravište');
+  if(!z.stanova && z.javni) meta.push(esc(txt(z.javni.split('·')[0].trim())));
+
+  d.innerHTML =
+    '<button class="red" type="button" aria-expanded="'+otv+'">' +
+      '<span class="br"><span class="n">'+nf.format(z.biraca)+'</span>' +
+        '<span class="u" style="display:block">birača</span></span>' +
+      '<span class="adr"><span class="a">'+esc(txt(z.adresa))+'</span>' +
+        '<span class="m">'+meta.join('')+'</span></span>' +
+      '<span class="tagwrap"><span class="tag" style="background:'+k.bg+';color:'+k.boja+'">' +
+        '<span class="dot" style="background:'+k.boja+'"></span>'+k.ime+'</span></span>' +
+    '</button>' + (otv ? detalj(z) : '');
+
+  d.querySelector('.red').onclick = () => { izabrana = (izabrana === z.id ? null : z.id); crtaj(); mapa.osveži(); };
+  return d;
+}
+
+function detalj(z){
+  const obj = z.objekat.length
+    ? '<div><dt>Vrsta objekta</dt><dd class="objekti">' +
+      z.objekat.map(o=>'<span>'+esc(o)+'</span>').join('') + '</dd></div>' : '';
+  const jav = z.javni
+    ? '<div><dt>Javni objekat</dt><dd>'+esc(txt(z.javni))+'</dd></div>' : '';
+  const kom = z.komentari.length
+    ? '<ul>' + z.komentari.map(c =>
+        '<li>'+esc(c.tekst)+'<span class="who">'+esc(c.izvor||'komšija')+
+        (c.datum ? ' · '+esc(c.datum) : '')+'</span></li>').join('') + '</ul>'
+    : '<p class="prazno">Još niko iz komšiluka nije javio za ovu adresu.</p>';
+
+  return '<div class="det">' +
+    '<dl class="dl">' +
+      '<div><dt>Prebivalište</dt><dd class="mono">'+nf.format(z.prebivaliste)+'</dd></div>' +
+      '<div><dt>Boravište</dt><dd class="mono">'+nf.format(z.boraviste)+'</dd></div>' +
+      '<div><dt>Stanova (procena)</dt><dd class="mono">'+(z.stanova ? df.format(z.stanova) : '—')+'</dd></div>' +
+      '<div><dt>Pouzdanost</dt><dd style="font-weight:400;font-size:13px">'+POUZDANOST[z.pouzdanost]+'</dd></div>' +
+      obj + jav +
+    '</dl>' +
+    '<div class="pitanje"><div class="lb">Pitanje za komšiluk</div><p>'+esc(pitanje(z))+'</p></div>' +
+    '<div class="kom"><h4>Prijave iz komšiluka</h4>'+kom+'</div>' +
+    '<div class="akcije">' +
+      '<button class="btn pri" type="button" data-kopiraj="'+z.id+'">Kopiraj prijavu za Telegram</button>' +
+      '<button class="btn" type="button" data-koord="'+z.id+'">Kopiraj koordinate</button>' +
+    '</div></div>';
+}
+
+function prijavaTekst(z){
+  return 'Prijava o adresi: ' + txt(z.adresa) + '\n' +
+    'Upisanih birača: ' + z.biraca + (z.stanova ? ' · procena stanova: ' + df.format(z.stanova) : '') + '\n' +
+    'Moje saznanje: [deluje realno / mnogo manje ljudi živi tu / ne znam]\n' +
+    'Napomena: \n' +
+    '(Molimo bez imena stanara i brojeva stanova.)';
+}
+
+function kopiraj(tekst, btn){
+  const uspeh = () => { const s = btn.textContent; btn.textContent = 'Kopirano';
+                        setTimeout(()=>{btn.textContent = s;}, 1600); };
+  try{
+    navigator.clipboard.writeText(tekst).then(uspeh).catch(()=>ručno(tekst, btn));
+  }catch(e){ ručno(tekst, btn); }
+}
+function ručno(tekst, btn){
+  const ta = document.createElement('textarea');
+  ta.value = tekst; ta.style.cssText = 'position:fixed;left:-9999px';
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand('copy'); btn.textContent = 'Kopirano'; setTimeout(()=>{crtaj();},1600); }
+  catch(e){ btn.textContent = 'Kopiranje nije uspelo'; }
+  ta.remove();
+}
+
+function crtaj(){
+  const r = filtrirano();
+  const el = document.getElementById('lista');
+  el.innerHTML = '';
+  if(!r.length){
+    el.innerHTML = '<div class="prazno-lista">Nijedna adresa ne odgovara pretrazi.</div>';
+  } else {
+    const frag = document.createDocumentFragment();
+    r.forEach(z => frag.appendChild(karta(z)));
+    el.appendChild(frag);
+  }
+  document.getElementById('rez').textContent =
+    r.length + ' od ' + PODACI.length + ' adresa · ' + nf.format(r.reduce((a,z)=>a+z.biraca,0)) + ' birača';
+
+  el.querySelectorAll('[data-kopiraj]').forEach(b => {
+    b.onclick = () => kopiraj(prijavaTekst(PODACI.find(z=>z.id==b.dataset.kopiraj)), b);
+  });
+  el.querySelectorAll('[data-koord]').forEach(b => {
+    const z = PODACI.find(x=>x.id==b.dataset.koord);
+    b.onclick = () => kopiraj(z.lat + ', ' + z.lon, b);
+  });
+  mapa.osveži();
+}
+
+/* ---------- mapa ---------- */
+const mapa = (() => {
+  const box = document.getElementById('mapviz');
+  const svg = document.getElementById('karta');
+  const tip = document.getElementById('tip');
+  const NS = 'http://www.w3.org/2000/svg';
+  let VW = 600, VH = 420, k = 1, tx = 0, ty = 0;
+  const P = 34;
+  let baza = null;
+
+  const gVeze = document.createElementNS(NS,'g');
+  const gTacke = document.createElementNS(NS,'g');
+  const gLbl = document.createElementNS(NS,'g');
+  const root = document.createElementNS(NS,'g');
+  root.append(gVeze, gLbl, gTacke);
+  svg.appendChild(root);
+
+  function merc(lat, lon){
+    return {x: lon, y: Math.log(Math.tan(Math.PI/4 + lat*Math.PI/360)) * 180/Math.PI};
+  }
+  function osnova(){
+    const p = PODACI.map(z => ({z, ...merc(z.lat, z.lon)}));
+    const xs = p.map(o=>o.x), ys = p.map(o=>o.y);
+    const x0 = Math.min(...xs), x1 = Math.max(...xs);
+    const y0 = Math.min(...ys), y1 = Math.max(...ys);
+    const s = Math.min((VW-2*P)/(x1-x0||1), (VH-2*P)/(y1-y0||1));
+    const cx = (x0+x1)/2, cy = (y0+y1)/2;
+    p.forEach(o => { o.px = VW/2 + (o.x-cx)*s; o.py = VH/2 - (o.y-cy)*s; });
+    baza = p;
+  }
+  function r(z){ return 3.4 + Math.sqrt(z.biraca)*0.78; }
+
+  function izgradi(){
+    gVeze.innerHTML = ''; gTacke.innerHTML = ''; gLbl.innerHTML = '';
+    const ulice = new Map();
+    baza.forEach(o => {
+      if(!ulice.has(o.z.ulica)) ulice.set(o.z.ulica, []);
+      ulice.get(o.z.ulica).push(o);
+    });
+    ulice.forEach(lst => {
+      if(lst.length < 2) return;
+      const s = [...lst].sort((a,b)=>(parseInt(a.z.broj)||0)-(parseInt(b.z.broj)||0));
+      const pl = document.createElementNS(NS,'polyline');
+      pl.setAttribute('points', s.map(o=>o.px.toFixed(1)+','+o.py.toFixed(1)).join(' '));
+      pl.setAttribute('class','veza');
+      gVeze.appendChild(pl);
+    });
+    ulice.forEach((lst, ime) => {
+      const t = document.createElementNS(NS,'text');
+      t.setAttribute('x', (lst.reduce((a,o)=>a+o.px,0)/lst.length).toFixed(1));
+      t.setAttribute('y', (Math.min(...lst.map(o=>o.py)) - 9 - r(lst[0].z)).toFixed(1));
+      t.setAttribute('text-anchor','middle');
+      t.setAttribute('class','st-lbl');
+      t._ime = ime;
+      t._tez = lst.reduce((a,o)=>a+o.z.biraca,0);
+      gLbl.appendChild(t);
+    });
+    baza.forEach(o => {
+      const c = document.createElementNS(NS,'circle');
+      c.setAttribute('cx', o.px.toFixed(1));
+      c.setAttribute('cy', o.py.toFixed(1));
+      c.setAttribute('fill', KAT[o.z.kat].boja);
+      c.setAttribute('fill-opacity','.72');
+      c.setAttribute('stroke', KAT[o.z.kat].boja);
+      c.style.cursor = 'pointer';
+      c.addEventListener('pointerenter', e => {
+        tip.hidden = false;
+        tip.innerHTML = '<b>'+esc(txt(o.z.adresa))+'</b><span>'+nf.format(o.z.biraca)+' birača' +
+          (o.z.odnos ? ' · '+df.format(o.z.odnos)+'× po stanu' : '')+'</span>';
+        const br = box.getBoundingClientRect();
+        tip.style.left = (e.clientX - br.left) + 'px';
+        tip.style.top  = (e.clientY - br.top) + 'px';
+      });
+      c.addEventListener('pointerleave', () => { tip.hidden = true; });
+      c.addEventListener('click', ev => {
+        ev.stopPropagation();
+        izabrana = o.z.id; crtaj();
+        const el = document.getElementById('a'+o.z.id);
+        if(el) el.scrollIntoView({block:'center', behavior:'smooth'});
+      });
+      o.el = c;
+      gTacke.appendChild(c);
+    });
+  }
+
+  function osveži(){
+    if(!baza) return;
+    root.setAttribute('transform', 'translate('+tx.toFixed(2)+','+ty.toFixed(2)+') scale('+k.toFixed(4)+')');
+    const vid = new Set(filtrirano().map(z=>z.id));
+    const zauzeto = [];
+    baza.forEach(o => {
+      const on = vid.has(o.z.id);
+      const sel = izabrana === o.z.id;
+      o.el.setAttribute('r', ((sel ? r(o.z)*1.25 : r(o.z))/k).toFixed(2));
+      o.el.setAttribute('stroke-width', ((sel ? 2.6 : 1)/k).toFixed(2));
+      o.el.setAttribute('fill-opacity', on ? (sel ? '.95' : '.72') : '.07');
+      o.el.setAttribute('stroke-opacity', on ? '1' : '.12');
+      o.el.style.pointerEvents = on ? 'auto' : 'none';
+      if(on){
+        const rr = r(o.z)/k;
+        zauzeto.push({x1:o.px-rr, x2:o.px+rr, y1:o.py-rr, y2:o.py+rr});
+      }
+    });
+    [...gVeze.children].forEach(p => p.setAttribute('stroke-width', (0.9/k).toFixed(2)));
+    const fs = 10.5/k, uzeti = zauzeto;
+    [...gLbl.children].sort((a,b)=>b._tez-a._tez).forEach(t => {
+      t.setAttribute('font-size', fs.toFixed(2));
+      t.setAttribute('stroke-width', (3/k).toFixed(2));
+      const ime = txt(t._ime);
+      t.textContent = ime;
+      const w = ime.length * fs * 0.56, h = fs * 1.2;
+      const x = +t.getAttribute('x'), y = +t.getAttribute('y');
+      const bb = {x1:x-w/2, x2:x+w/2, y1:y-h, y2:y};
+      const sudar = uzeti.some(o => !(bb.x2 < o.x1 || bb.x1 > o.x2 || bb.y2 < o.y1 || bb.y1 > o.y2));
+      t.setAttribute('opacity', sudar ? '0' : '1');
+      if(!sudar) uzeti.push(bb);
+    });
+  }
+
+  function razmeri(){
+    const br = box.getBoundingClientRect();
+    VW = Math.max(300, br.width); VH = Math.max(260, br.height);
+    svg.setAttribute('viewBox', '0 0 '+VW+' '+VH);
+    osnova(); izgradi(); osveži();
+  }
+
+  function zum(f, cx, cy){
+    const nk = Math.min(9, Math.max(1, k*f));
+    if(nk === k) return;
+    const px = (cx - tx)/k, py = (cy - ty)/k;
+    k = nk; tx = cx - px*k; ty = cy - py*k;
+    ogranici(); osveži();
+  }
+  function ogranici(){
+    const minx = VW - VW*k, miny = VH - VH*k;
+    tx = Math.min(0, Math.max(minx, tx));
+    ty = Math.min(0, Math.max(miny, ty));
+  }
+
+  box.addEventListener('wheel', e => {
+    e.preventDefault();
+    const br = box.getBoundingClientRect();
+    zum(e.deltaY < 0 ? 1.18 : 1/1.18, e.clientX-br.left, e.clientY-br.top);
+  }, {passive:false});
+
+  let vuci = null;
+  box.addEventListener('pointerdown', e => {
+    vuci = {x:e.clientX, y:e.clientY, tx, ty};
+    box.classList.add('drag'); box.setPointerCapture(e.pointerId);
+  });
+  box.addEventListener('pointermove', e => {
+    if(!vuci) return;
+    tx = vuci.tx + (e.clientX - vuci.x); ty = vuci.ty + (e.clientY - vuci.y);
+    ogranici(); osveži();
+  });
+  const kraj = e => { vuci = null; box.classList.remove('drag'); };
+  box.addEventListener('pointerup', kraj);
+  box.addEventListener('pointercancel', kraj);
+
+  document.getElementById('zIn').onclick  = () => zum(1.4, VW/2, VH/2);
+  document.getElementById('zOut').onclick = () => zum(1/1.4, VW/2, VH/2);
+  document.getElementById('zRst').onclick = () => { k=1; tx=0; ty=0; osveži(); };
+
+  if(window.ResizeObserver) new ResizeObserver(() => razmeri()).observe(box);
+
+  return {init: razmeri, osveži};
+})();
+
+/* ---------- legenda ---------- */
+function legenda(){
+  const el = document.getElementById('legend');
+  el.innerHTML = Object.entries(KAT).map(([k,v]) =>
+    '<span class="it"><span class="dot" style="background:'+v.boja+'"></span>'+v.ime+'</span>').join('') +
+    '<span class="hint">Veličina kruga prati broj upisanih birača. Tanke linije povezuju adrese u istoj ulici ' +
+    'i nisu tok ulice. Prikaz je šematski, bez kartografske podloge.</span>';
+}
+
+/* ---------- vezivanje ---------- */
+document.getElementById('q').addEventListener('input', e => { upit = e.target.value; crtaj(); });
+document.getElementById('sort').addEventListener('change', e => { poredak = e.target.value; crtaj(); });
+function pismoUI(){
+  document.getElementById('pCir').setAttribute('aria-pressed', PISMO === 'cir');
+  document.getElementById('pLat').setAttribute('aria-pressed', PISMO === 'lat');
+}
+document.getElementById('pCir').onclick = () => { PISMO='cir'; try{localStorage.setItem('pismo','cir')}catch(e){} pismoUI(); crtaj(); };
+document.getElementById('pLat').onclick = () => { PISMO='lat'; try{localStorage.setItem('pismo','lat')}catch(e){} pismoUI(); crtaj(); };
+
+zbir(); chips(); legenda(); pismoUI(); crtaj(); mapa.init();
+</script>
