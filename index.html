@@ -1250,11 +1250,18 @@ const mapa = (() => {
     if(!m || !granice || korisnikPomerao) return;
     m.invalidateSize();
     m.fitBounds(granice, {padding:[28,28]});
-    // Ako je kontejner promenio veličinu između računanja zuma i iscrtavanja,
-    // poneka adresa ume da ostane van prikaza. Proveravamo i spuštamo zum.
-    let osiguranje = 3;
-    while(osiguranje-- > 0 && !m.getBounds().contains(granice) && m.getZoom() > 8)
-      m.setZoom(m.getZoom() - 1);
+  }
+
+  // fitBounds racuna zum iz velicine kontejnera u tom trenutku, a ona se dok
+  // se strana slaze jos menja, pa krajnje adrese ume da ostanu van prikaza.
+  // Prvih par sekundi zato proveravamo stvarni prikaz i spustamo zum dok sve
+  // ne stane. Cim korisnik sam pomeri mapu, prikaz je njegov i ovo prestaje.
+  function ispravljaj(){
+    let tik = 0;
+    const t = setInterval(() => {
+      if(!m || korisnikPomerao || ++tik > 12){ clearInterval(t); return; }
+      if(!m.getBounds().contains(granice) && m.getZoom() > 8) m.setZoom(m.getZoom() - 1);
+    }, 250);
   }
 
   function r(z){ return 4 + Math.sqrt(z.biraca) * 0.78; }
@@ -1326,6 +1333,7 @@ const mapa = (() => {
     requestAnimationFrame(uklopi);
     window.addEventListener('load', uklopi);
     [120, 400, 1200].forEach(t => setTimeout(uklopi, t));
+    ispravljaj();
     if(window.ResizeObserver) new ResizeObserver(() => { m.invalidateSize(); uklopi(); }).observe(box);
 
     L.Control.Vrati = L.Control.extend({
