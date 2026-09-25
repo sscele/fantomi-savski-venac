@@ -842,6 +842,8 @@ main{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;margin-top:20px}
 .leaflet-control-attribution{background:var(--surface)!important;color:var(--ink-3)!important;font-size:11px}
 .leaflet-bar a,.leaflet-bar a:hover{background:var(--surface);color:var(--ink-2);border-bottom-color:var(--line)}
 .leaflet-bar a:hover{color:var(--ink)}
+.vrati-prikaz{display:block;width:30px;height:30px;line-height:30px;text-align:center;font-size:15px;
+  text-decoration:none;border-radius:4px}
 .leaflet-touch .leaflet-bar{border-color:var(--line-2)}
 .leaflet-tooltip{background:var(--ink);color:var(--paper);border:0;border-radius:6px;padding:6px 9px;
   font-size:12.5px;line-height:1.35;box-shadow:0 4px 14px rgba(0,0,0,.28)}
@@ -1238,8 +1240,17 @@ function crtaj(){
 /* ---------- mapa ---------- */
 const mapa = (() => {
   const box = document.getElementById('mapviz');
-  let m = null, sloj = null, ploce = null, bezPodloge = false;
+  let m = null, sloj = null, ploce = null, bezPodloge = false, granice = null, uklopljeno = false;
   const kruzi = new Map();
+
+  function uklopi(){
+    if(!m || !granice) return;
+    const b = box.getBoundingClientRect();
+    if(b.width < 120 || b.height < 120) return;
+    m.invalidateSize();
+    m.fitBounds(granice, {padding:[28,28]});
+    uklopljeno = true;
+  }
 
   function r(z){ return 4 + Math.sqrt(z.biraca) * 0.78; }
 
@@ -1290,8 +1301,30 @@ const mapa = (() => {
       kruzi.set(z.id, c);
     });
 
-    m.fitBounds(L.latLngBounds(PODACI.map(z => [z.lat, z.lon])), {padding:[28,28]});
-    if(window.ResizeObserver) new ResizeObserver(() => m.invalidateSize()).observe(box);
+    granice = L.latLngBounds(PODACI.map(z => [z.lat, z.lon]));
+
+    // Kontejner ume da bude manji dok se strana slaže, a fitBounds računa zum
+    // iz veličine kontejnera. Zato uklapamo tek kad kontejner dobije pravu veličinu.
+    if(window.ResizeObserver) new ResizeObserver(() => {
+      m.invalidateSize();
+      if(!uklopljeno) uklopi();
+    }).observe(box);
+    uklopi();
+    setTimeout(uklopi, 400);
+
+    L.Control.Vrati = L.Control.extend({
+      onAdd: function(){
+        const a = L.DomUtil.create('a', 'leaflet-bar vrati-prikaz');
+        a.href = '#'; a.title = 'Vrati prikaz na sve adrese'; a.textContent = '⤢';
+        L.DomEvent.on(a, 'click', e => {
+          L.DomEvent.stop(e);
+          m.fitBounds(granice, {padding:[28,28]});
+        });
+        return a;
+      }
+    });
+    new L.Control.Vrati({position:'topleft'}).addTo(m);
+
     osveži();
   }
 
