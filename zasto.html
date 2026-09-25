@@ -113,6 +113,12 @@ h1{font-size:clamp(25px,4.2vw,36px);line-height:1.14;letter-spacing:-.01em}
 .nazad{display:inline-flex;align-items:center;gap:7px;margin-top:16px;font-size:13.5px;
   text-decoration:none;font-weight:500}
 .nazad:hover{text-decoration:underline}
+.hd-red{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:16px}
+.hd-red .nazad{margin-top:0}
+.pismo{display:flex;border:1px solid var(--line-2);border-radius:7px;overflow:hidden;flex:none}
+.pismo button{font-family:var(--mono);font-size:12px;padding:7px 12px;border:0;background:var(--surface);
+  color:var(--ink-2);cursor:pointer}
+.pismo button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
 
 section{margin-top:34px}
 h2{font-size:clamp(19px,2.6vw,23px);margin-bottom:12px}
@@ -181,7 +187,13 @@ img{max-width:100%}
     <h1>Zašto proveravamo birački spisak</h1>
     <p class="sub">Komšije proveravaju da li broj birača upisanih na adrese u opštini odgovara tome ko na
       njima zaista živi. Ova strana objašnjava šta zakon kaže i gde je granica te provere.</p>
-    <a class="nazad" href="./">← Nazad na listu adresa</a>
+    <div class="hd-red">
+      <a class="nazad" href="./">← Nazad na listu adresa</a>
+      <div class="pismo" role="group" aria-label="Pismo" data-latinica>
+        <button type="button" id="pCir" aria-pressed="true">Ћир</button>
+        <button type="button" id="pLat" aria-pressed="false">Lat</button>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -249,7 +261,7 @@ img{max-width:100%}
         <figcaption>Sastavljanje netačnih biračkih spiskova</figcaption>
       </figure>
     </div>
-    <p class="qr-nap">QR kod sa materijala vodi na <a href="https://upit.birackispisak.gov.rs" rel="noopener">upit.birackispisak.gov.rs</a>,
+    <p class="qr-nap">QR kod sa materijala vodi na <a href="https://upit.birackispisak.gov.rs" rel="noopener" data-latinica>upit.birackispisak.gov.rs</a>,
       zvanični portal Ministarstva državne uprave i lokalne samouprave za uvid u jedinstveni birački spisak.</p>
   </section>
 
@@ -329,7 +341,7 @@ img{max-width:100%}
     <h2>Šta možete da uradite</h2>
     <ol class="koraci">
       <li><strong>Proverite svoj upis</strong>
-        <span>Uvid je dostupan na <a href="https://upit.birackispisak.gov.rs" rel="noopener">upit.birackispisak.gov.rs</a>,
+        <span>Uvid je dostupan na <a href="https://upit.birackispisak.gov.rs" rel="noopener" data-latinica>upit.birackispisak.gov.rs</a>,
           preko jedinstvenog matičnog broja i broja lične karte, kao i u opštinskoj upravi.</span></li>
       <li><strong>Ako ste upisani na adresi na kojoj ne živite, prijavite tačnu adresu</strong>
         <span>Prijava se podnosi u policijskoj upravi po mestu stvarnog stanovanja.</span></li>
@@ -394,6 +406,98 @@ document.querySelectorAll('.viz').forEach(fig => {
 
 document.getElementById('zatvori').addEventListener('click', () => lupa.close());
 lupa.addEventListener('click', e => { if(e.target === lupa) lupa.close(); });
+
+/* ---------- pismo ---------- */
+/* Izvorni tekst strane pisan je latinicom; ćirilica se iz nje izvodi u pregledaču.
+   Nazivi ulica iz biračkog spiska su ćirilični, pa se u latiničnom režimu
+   preslovljavaju u suprotnom smeru. Oba pravca su ovde jednoznačna jer je
+   proveren svaki tekst koji se pojavljuje na strani. */
+
+const MAP_CL = {'А':'A','Б':'B','В':'V','Г':'G','Д':'D','Ђ':'Đ','Е':'E','Ж':'Ž','З':'Z','И':'I',
+'Ј':'J','К':'K','Л':'L','Љ':'Lj','М':'M','Н':'N','Њ':'Nj','О':'O','П':'P','Р':'R','С':'S','Т':'T',
+'Ћ':'Ć','У':'U','Ф':'F','Х':'H','Ц':'C','Ч':'Č','Џ':'Dž','Ш':'Š','а':'a','б':'b','в':'v','г':'g',
+'д':'d','ђ':'đ','е':'e','ж':'ž','з':'z','и':'i','ј':'j','к':'k','л':'l','љ':'lj','м':'m','н':'n',
+'њ':'nj','о':'o','п':'p','р':'r','с':'s','т':'t','ћ':'ć','у':'u','ф':'f','х':'h','ц':'c','ч':'č',
+'џ':'dž','ш':'š'};
+
+/* duži nizovi prvi, da digrafi prođu pre pojedinačnih slova */
+const MAP_LC = [['Nj','Њ'],['NJ','Њ'],['nj','њ'],['Lj','Љ'],['LJ','Љ'],['lj','љ'],
+['Dž','Џ'],['DŽ','Џ'],['dž','џ'],
+['A','А'],['B','Б'],['V','В'],['G','Г'],['D','Д'],['Đ','Ђ'],['E','Е'],['Ž','Ж'],['Z','З'],
+['I','И'],['J','Ј'],['K','К'],['L','Л'],['M','М'],['N','Н'],['O','О'],['P','П'],['R','Р'],
+['S','С'],['T','Т'],['Ć','Ћ'],['U','У'],['F','Ф'],['H','Х'],['C','Ц'],['Č','Ч'],['Š','Ш'],
+['a','а'],['b','б'],['v','в'],['g','г'],['d','д'],['đ','ђ'],['e','е'],['ž','ж'],['z','з'],
+['i','и'],['j','ј'],['k','к'],['l','л'],['m','м'],['n','н'],['o','о'],['p','п'],['r','р'],
+['s','с'],['t','т'],['ć','ћ'],['u','у'],['f','ф'],['h','х'],['c','ц'],['č','ч'],['š','ш']];
+
+let PISMO = 'cir';
+try{ const s = localStorage.getItem('pismo'); if(s === 'cir' || s === 'lat') PISMO = s; }catch(e){}
+
+function lat(t){ return String(t).replace(/[Ѐ-ӿ]/g, c => MAP_CL[c] ?? c); }
+/* strane skraćenice, nazivi i internet adrese ostaju latinicom */
+const LAT_IZUZECI = /(\bQR\b|\bOpenStreetMap\b|\bLeaflet\b|\bPDF\b|\bHTML\b|\bCSV\b|[A-Za-z0-9-]+\.(?:rs|com|org|net|io)(?:\/\S*)?)/g;
+function cirDeo(t){ let o = t; for(const [a,b] of MAP_LC) o = o.split(a).join(b); return o; }
+function cir(t){
+  return String(t).split(LAT_IZUZECI).map((d, i) => i % 2 ? d : cirDeo(d)).join('');
+}
+/* naziv ulice: podaci su ćirilični */
+function txt(t){ return PISMO === 'lat' ? lat(t) : t; }
+
+/* Preslovljavanje cele strane. Čuva izvorni (latinični) tekst svakog čvora,
+   pa je prebacivanje u oba smera bez gubitka. Elementi označeni sa
+   data-latinica ostaju kako jesu — nazivi, adrese i skraćenice. */
+const IZVORNIK = new WeakMap();
+const IZVORNIK_ATR = new WeakMap();
+const ATRIBUTI = ['placeholder','title','aria-label','alt'];
+
+function preslovi(koren){
+  const c = koren || document.body;
+  const hod = document.createTreeWalker(c, NodeFilter.SHOW_TEXT, {
+    acceptNode(n){
+      const r = n.parentElement;
+      if(!r) return NodeFilter.FILTER_REJECT;
+      if(r.closest('script,style,[data-latinica]')) return NodeFilter.FILTER_REJECT;
+      return n.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+    }
+  });
+  const cvorovi = [];
+  while(hod.nextNode()) cvorovi.push(hod.currentNode);
+  for(const n of cvorovi){
+    if(!IZVORNIK.has(n)) IZVORNIK.set(n, n.nodeValue);
+    const izv = IZVORNIK.get(n);
+    const novo = PISMO === 'cir' ? cir(izv) : izv;
+    if(n.nodeValue !== novo) n.nodeValue = novo;
+  }
+  for(const el of c.querySelectorAll('[placeholder],[title],[aria-label],[alt]')){
+    if(el.closest('[data-latinica]')) continue;
+    if(!IZVORNIK_ATR.has(el)){
+      const m = {};
+      for(const a of ATRIBUTI) if(el.hasAttribute(a)) m[a] = el.getAttribute(a);
+      IZVORNIK_ATR.set(el, m);
+    }
+    const m = IZVORNIK_ATR.get(el);
+    for(const a in m){
+      const novo = PISMO === 'cir' ? cir(m[a]) : m[a];
+      if(el.getAttribute(a) !== novo) el.setAttribute(a, novo);
+    }
+  }
+}
+
+function pismoUI(){
+  document.getElementById('pCir').setAttribute('aria-pressed', PISMO === 'cir');
+  document.getElementById('pLat').setAttribute('aria-pressed', PISMO === 'lat');
+}
+function postaviPismo(p){
+  PISMO = p;
+  try{ localStorage.setItem('pismo', p); }catch(e){}
+  pismoUI();
+  preslovi();
+}
+document.getElementById('pCir').onclick = () => postaviPismo('cir');
+document.getElementById('pLat').onclick = () => postaviPismo('lat');
+
+pismoUI();
+preslovi();
 </script>
 
 </body>
