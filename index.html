@@ -836,7 +836,7 @@ main{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;margin-top:20px}
 /* ---------- mapa ---------- */
 .mapbox{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;
         box-shadow:var(--shadow)}
-.mapviz{position:relative;height:clamp(340px,54vh,660px);z-index:0}
+.mapviz{position:relative;height:clamp(400px,66vh,620px);z-index:0}
 .leaflet-container{background:var(--surface-2);font-family:var(--sans);font-size:13px}
 .leaflet-container a{color:var(--accent)}
 .leaflet-control-attribution{background:var(--surface)!important;color:var(--ink-3)!important;font-size:11px}
@@ -1249,7 +1249,7 @@ const mapa = (() => {
   function uklopi(){
     if(!m || !granice || korisnikPomerao) return;
     m.invalidateSize();
-    m.fitBounds(granice, {padding:[28,28]});
+    m.fitBounds(granice, {padding:[14,14]});
   }
 
   // fitBounds racuna zum iz velicine kontejnera u tom trenutku, a ona se dok
@@ -1342,7 +1342,7 @@ const mapa = (() => {
         a.href = '#'; a.title = 'Vrati prikaz na sve adrese'; a.textContent = '⤢';
         L.DomEvent.on(a, 'click', e => {
           L.DomEvent.stop(e);
-          m.fitBounds(granice, {padding:[28,28]});
+          m.fitBounds(granice, {padding:[14,14]});
         });
         return a;
       }
