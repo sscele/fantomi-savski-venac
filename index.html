@@ -1250,6 +1250,11 @@ const mapa = (() => {
     if(!m || !granice || korisnikPomerao) return;
     m.invalidateSize();
     m.fitBounds(granice, {padding:[28,28]});
+    // Ako je kontejner promenio veličinu između računanja zuma i iscrtavanja,
+    // poneka adresa ume da ostane van prikaza. Proveravamo i spuštamo zum.
+    let osiguranje = 3;
+    while(osiguranje-- > 0 && !m.getBounds().contains(granice) && m.getZoom() > 8)
+      m.setZoom(m.getZoom() - 1);
   }
 
   function r(z){ return 4 + Math.sqrt(z.biraca) * 0.78; }
