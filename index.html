@@ -1270,7 +1270,17 @@ const mapa = (() => {
       poruka('Mapa nije mogla da se učita. Lista ispod radi normalno.');
       return;
     }
-    m = L.map(box, {scrollWheelZoom:true, zoomControl:true});
+    m = L.map(box, {scrollWheelZoom:false, zoomControl:true});
+
+    // Mapa ne sme da otima skrol stranice. Točkić zumira tek pošto se klikne
+    // na mapu, a na telefonu se mapa pomera sa dva prsta.
+    m.on('click', () => m.scrollWheelZoom.enable());
+    box.addEventListener('mouseleave', () => m.scrollWheelZoom.disable());
+    if(L.Browser.mobile){
+      m.dragging.disable();
+      box.addEventListener('touchstart', e => { if(e.touches.length > 1) m.dragging.enable(); }, {passive:true});
+      box.addEventListener('touchend', () => m.dragging.disable(), {passive:true});
+    }
     ploce = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -1304,7 +1314,7 @@ const mapa = (() => {
     granice = L.latLngBounds(PODACI.map(z => [z.lat, z.lon]));
     m.setView(granice.getCenter(), 13);
 
-    ['mousedown','wheel','touchstart','dblclick'].forEach(ev =>
+    ['mousedown','touchstart','dblclick'].forEach(ev =>
       box.addEventListener(ev, () => { korisnikPomerao = true; }, {passive:true, once:true}));
 
     uklopi();
@@ -1361,7 +1371,8 @@ function legenda(){
   el.innerHTML = Object.entries(KAT).map(([k,v]) =>
     '<span class="it"><span class="dot" style="background:'+v.boja+'"></span>'+v.ime+'</span>').join('') +
     '<span class="hint">Veličina kruga prati broj upisanih birača. Klik na krug otvara adresu u listi ispod, ' +
-    'a klik na karticu u listi pomera mapu na tu adresu.</span>';
+    'a klik na karticu u listi pomera mapu na tu adresu. Točkić miša zumira tek pošto se klikne na mapu; ' +
+    'na telefonu se mapa pomera sa dva prsta.</span>';
 }
 
 /* ---------- vezivanje ---------- */
