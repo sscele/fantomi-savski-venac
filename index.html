@@ -1240,16 +1240,16 @@ function crtaj(){
 /* ---------- mapa ---------- */
 const mapa = (() => {
   const box = document.getElementById('mapviz');
-  let m = null, sloj = null, ploce = null, bezPodloge = false, granice = null, uklopljeno = false;
+  let m = null, sloj = null, ploce = null, bezPodloge = false, granice = null, korisnikPomerao = false;
   const kruzi = new Map();
 
+  // Zum koji fitBounds izračuna zavisi od veličine kontejnera u tom trenutku,
+  // a ona se dok se strana slaže još menja. Zato uklapanje ponavljamo sve dok
+  // korisnik sam ne pomeri mapu — od tog časa je prikaz njegov.
   function uklopi(){
-    if(!m || !granice) return;
-    const b = box.getBoundingClientRect();
-    if(b.width < 120 || b.height < 120) return;
+    if(!m || !granice || korisnikPomerao) return;
     m.invalidateSize();
     m.fitBounds(granice, {padding:[28,28]});
-    uklopljeno = true;
   }
 
   function r(z){ return 4 + Math.sqrt(z.biraca) * 0.78; }
@@ -1302,15 +1302,16 @@ const mapa = (() => {
     });
 
     granice = L.latLngBounds(PODACI.map(z => [z.lat, z.lon]));
+    m.setView(granice.getCenter(), 13);
 
-    // Kontejner ume da bude manji dok se strana slaže, a fitBounds računa zum
-    // iz veličine kontejnera. Zato uklapamo tek kad kontejner dobije pravu veličinu.
-    if(window.ResizeObserver) new ResizeObserver(() => {
-      m.invalidateSize();
-      if(!uklopljeno) uklopi();
-    }).observe(box);
+    ['mousedown','wheel','touchstart','dblclick'].forEach(ev =>
+      box.addEventListener(ev, () => { korisnikPomerao = true; }, {passive:true, once:true}));
+
     uklopi();
-    setTimeout(uklopi, 400);
+    requestAnimationFrame(uklopi);
+    window.addEventListener('load', uklopi);
+    [120, 400, 1200].forEach(t => setTimeout(uklopi, t));
+    if(window.ResizeObserver) new ResizeObserver(() => { m.invalidateSize(); uklopi(); }).observe(box);
 
     L.Control.Vrati = L.Control.extend({
       onAdd: function(){
