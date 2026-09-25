@@ -120,7 +120,11 @@ p{margin:0 0 13px;max-width:66ch}
 .lede{font-family:var(--serif);font-size:18px;line-height:1.5;color:var(--ink)}
 
 /* --- vizuali --- */
-.vizuali{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:18px}
+.podnaslov{font-size:15px;font-family:var(--mono);font-weight:500;text-transform:uppercase;
+  letter-spacing:.06em;color:var(--ink-3);margin-top:22px}
+.qr-nap{font-size:13.5px;color:var(--ink-2);margin-top:14px}
+.vizuali{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:14px;
+  align-items:start}
 .viz{display:block;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface);
   cursor:zoom-in;padding:0;text-align:left;font:inherit;color:inherit;box-shadow:var(--shadow)}
 .viz img{display:block;width:100%;height:auto}
@@ -197,23 +201,56 @@ img{max-width:100%}
   <section>
     <h2>Vizuali akcije</h2>
     <p>Materijali koje komšije dele po sanducićima i na mrežama. Kliknite na sliku za uvećanje.</p>
+
+    <h3 class="podnaslov">Poziv na proveru</h3>
     <div class="vizuali">
       <figure class="viz" role="button" tabindex="0" data-puna="vizuali/fantom-pitanje.jpg">
-        <img src="vizuali/fantom-pitanje-mala.jpg" alt="Vizual akcije: „Šta? Mogu da odgovaram jer sam fantom?”"
-             width="520" height="924" loading="lazy">
+        <img src="vizuali/fantom-pitanje-mala.jpg" alt="Vizual akcije: „Šta? Mogu da odgovaram jer sam fantom?”" loading="lazy">
         <figcaption>Pitanje koje pokreće akciju</figcaption>
       </figure>
-      <figure class="viz" role="button" tabindex="0" data-puna="vizuali/fantom-zakon.jpg">
-        <img src="vizuali/fantom-zakon-mala.jpg" alt="Vizual akcije: „Da! Fantom nije iznad zakona” sa citatima Zakona o jedinstvenom biračkom spisku i Krivičnog zakonika"
-             width="520" height="915" loading="lazy">
-        <figcaption>Šta zakon kaže o biračkom spisku</figcaption>
+      <figure class="viz" role="button" tabindex="0" data-puna="vizuali/ko-krade.jpg">
+        <img src="vizuali/ko-krade-mala.jpg" alt="Vizual akcije: „Ko krade taj ide u zatvor — izbori 2026”" loading="lazy">
+        <figcaption>Izbori 2026</figcaption>
+      </figure>
+      <figure class="viz" role="button" tabindex="0" data-puna="vizuali/otkrij-fantoma.jpg">
+        <img src="vizuali/otkrij-fantoma-mala.jpg" alt="Vizual akcije: „Otkrij svog fantoma — proverite birački spisak”" loading="lazy">
+        <figcaption>Poziv na proveru upisa</figcaption>
       </figure>
       <figure class="viz" role="button" tabindex="0" data-puna="vizuali/fantom-odjava.jpg">
-        <img src="vizuali/fantom-odjava-mala.jpg" alt="Vizual akcije: „Odjavi se na vreme!”"
-             width="520" height="919" loading="lazy">
+        <img src="vizuali/fantom-odjava-mala.jpg" alt="Vizual akcije: „Odjavi se na vreme!”" loading="lazy">
         <figcaption>Poziv onima koji su upisani na adresi na kojoj ne žive</figcaption>
       </figure>
+      <figure class="viz" role="button" tabindex="0" data-puna="vizuali/qr-upit.jpg">
+        <img src="vizuali/qr-upit-mala.jpg" alt="QR kod koji vodi na zvanični portal za uvid u birački spisak" loading="lazy">
+        <figcaption>QR kod za uvid u birački spisak</figcaption>
+      </figure>
     </div>
+
+    <h3 class="podnaslov">Šta piše u zakonu</h3>
+    <div class="vizuali">
+      <figure class="viz" role="button" tabindex="0" data-puna="vizuali/fantom-zakon.jpg">
+        <img src="vizuali/fantom-zakon-mala.jpg" alt="Vizual akcije: „Da! Fantom nije iznad zakona” sa citatima Zakona o jedinstvenom biračkom spisku i Krivičnog zakonika" loading="lazy">
+        <figcaption>Birački spisak je javna isprava</figcaption>
+      </figure>
+      <figure class="viz" role="button" tabindex="0" data-puna="vizuali/zjbs-clan6.jpg">
+        <img src="vizuali/zjbs-clan6-mala.jpg" alt="Zakon o jedinstvenom biračkom spisku, član 6 — upis prema mestu prebivališta i pravilo od šest meseci" loading="lazy">
+        <figcaption>Upis prema prebivalištu i rok od šest meseci</figcaption>
+      </figure>
+      <figure class="viz" role="button" tabindex="0" data-puna="vizuali/zpbg-clan18.jpg">
+        <img src="vizuali/zpbg-clan18-mala.jpg" alt="Zakon o prebivalištu i boravištu građana, član 18 — pasivizacija adrese" loading="lazy">
+        <figcaption>Pasivizacija adrese</figcaption>
+      </figure>
+      <figure class="viz" role="button" tabindex="0" data-puna="vizuali/kz-clan358.jpg">
+        <img src="vizuali/kz-clan358-mala.jpg" alt="Krivični zakonik, član 358 — navođenje na overavanje neistinitog sadržaja" loading="lazy">
+        <figcaption>Navođenje na overavanje neistinitog sadržaja</figcaption>
+      </figure>
+      <figure class="viz" role="button" tabindex="0" data-puna="vizuali/kz-clan158.jpg">
+        <img src="vizuali/kz-clan158-mala.jpg" alt="Krivični zakonik, član 158 — sastavljanje netačnih biračkih spiskova" loading="lazy">
+        <figcaption>Sastavljanje netačnih biračkih spiskova</figcaption>
+      </figure>
+    </div>
+    <p class="qr-nap">QR kod sa materijala vodi na <a href="https://upit.birackispisak.gov.rs" rel="noopener">upit.birackispisak.gov.rs</a>,
+      zvanični portal Ministarstva državne uprave i lokalne samouprave za uvid u jedinstveni birački spisak.</p>
   </section>
 
   <section>
@@ -224,6 +261,16 @@ img{max-width:100%}
       <p><q>Birač se upisuje u birački spisak prema mestu prebivališta, s tim što se na zahtev birača, u
         birački spisak može upisati i njegovo boravište u zemlji.</q></p>
       <cite>Zakon o jedinstvenom biračkom spisku — član 6.</cite>
+    </div>
+
+    <div class="zakon">
+      <h3>Ko se preselio, u novu opštinu se upisuje tek posle šest meseci</h3>
+      <p><q>Izuzetno od stava 1. ovog člana, birač koji je upisan u birački spisak i koji prijavi
+        prebivalište u drugoj jedinici lokalne samouprave, odnosno u drugoj gradskoj opštini, upisuje se u
+        deo biračkog spiska prema mestu tog prebivališta nakon šest meseci od dana prijave prebivališta.</q></p>
+      <p>Ovo pravilo postoji upravo zato da prijava prebivališta neposredno pred izbore ne bi menjala
+        sastav biračkog tela u nekoj opštini.</p>
+      <cite>Zakon o jedinstvenom biračkom spisku — član 6, stav 2.</cite>
     </div>
 
     <div class="zakon">
@@ -251,10 +298,21 @@ img{max-width:100%}
     </div>
 
     <div class="zakon">
+      <h3>Navođenje organa da overi neistinu je krivično delo</h3>
+      <p><q>Ko dovođenjem u zabludu navede nadležni organ da u javnoj ispravi, zapisniku ili knjizi overi
+        štogod neistinito što može da služi kao dokaz u pravnom saobraćaju, kazniće se zatvorom od tri
+        meseca do pet godina.</q></p>
+      <p>Za razliku od člana 357, koji se odnosi na službeno lice, ova odredba pogađa onoga ko organ
+        dovede u zabludu.</p>
+      <cite>Krivični zakonik — član 358.</cite>
+    </div>
+
+    <div class="zakon">
       <h3>Sastavljanje netačnih biračkih spiskova je krivično delo</h3>
-      <p>Za sastavljanje netačnog biračkog spiska u nameri uticaja na rezultate glasanja propisana je
-        novčana kazna ili zatvor do tri godine. Posebno je kažnjivo i glasanje umesto drugog lica ili
-        višestruko glasanje na istom glasanju.</p>
+      <p><q>Ko u nameri uticanja na rezultate izbora ili na referendumu, sačini netačan birački spisak,
+        kazniće se novčanom kaznom ili zatvorom do tri godine.</q></p>
+      <p>Posebno je kažnjivo i glasanje umesto drugog lica ili višestruko glasanje na istom glasanju
+        (član 157).</p>
       <cite>Krivični zakonik — članovi 157. i 158.</cite>
     </div>
 
@@ -271,7 +329,8 @@ img{max-width:100%}
     <h2>Šta možete da uradite</h2>
     <ol class="koraci">
       <li><strong>Proverite svoj upis</strong>
-        <span>Uvid u birački spisak dostupan je preko portala nadležnog ministarstva i u opštinskoj upravi.</span></li>
+        <span>Uvid je dostupan na <a href="https://upit.birackispisak.gov.rs" rel="noopener">upit.birackispisak.gov.rs</a>,
+          preko jedinstvenog matičnog broja i broja lične karte, kao i u opštinskoj upravi.</span></li>
       <li><strong>Ako ste upisani na adresi na kojoj ne živite, prijavite tačnu adresu</strong>
         <span>Prijava se podnosi u policijskoj upravi po mestu stvarnog stanovanja.</span></li>
       <li><strong>Ako poznajete neku adresu sa liste, javite šta znate</strong>
