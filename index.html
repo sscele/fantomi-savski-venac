@@ -783,6 +783,10 @@ header{border-bottom:1px solid var(--line);background:var(--surface)}
          color:var(--ink-3);margin:0 0 6px}
 h1{font-size:clamp(24px,3.4vw,34px);line-height:1.15;letter-spacing:-.01em}
 .sub{color:var(--ink-2);margin:8px 0 0;font-size:14.5px}
+.hd-akcije{display:flex;gap:10px;align-items:center;flex-wrap:wrap;flex:none}
+.zasto-link{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:7px;
+  background:var(--accent);color:var(--on-accent);text-decoration:none;font-size:13px;font-weight:500}
+.zasto-link:hover{filter:brightness(1.08)}
 .pismo{display:flex;gap:0;border:1px solid var(--line-2);border-radius:7px;overflow:hidden;flex:none}
 .pismo button{font-family:var(--mono);font-size:12px;padding:7px 12px;border:0;background:var(--surface);
               color:var(--ink-2);cursor:pointer}
@@ -953,9 +957,12 @@ img{max-width:100%}
       <p class="sub">Javni podaci o broju upisanih birača po adresi, uporedo sa procenom broja stanova na toj
         adresi. Lista je poziv komšijama da provere ono što podaci ne mogu — ko zaista živi na tim adresama.</p>
     </div>
+    <div class="hd-akcije">
+      <a class="zasto-link" href="zasto.html">Zašto ovo radimo</a>
     <div class="pismo" role="group" aria-label="Pismo">
       <button type="button" id="pCir" aria-pressed="true">Ћир</button>
       <button type="button" id="pLat" aria-pressed="false">Lat</button>
+    </div>
     </div>
   </div>
 </header>
@@ -978,6 +985,8 @@ img{max-width:100%}
     <p>Adrese koje su komšije već proverile nose oznaku nalaza. „Deluje realno” najčešće znači da jedan broj
       pokriva više ulaza ili dvorišnih objekata, pa visok broj birača ima uredno objašnjenje. „I dalje sporno”
       znači da provera nije otklonila sumnju.</p>
+    <p>Detaljno objašnjenje pravnog okvira, materijali akcije i granice ove provere nalaze se na strani
+      <a href="zasto.html">Zašto ovo radimo</a>.</p>
     <details>
       <summary>Zašto visok broj birača na adresi može biti sasvim uredan</summary>
       <ul>
